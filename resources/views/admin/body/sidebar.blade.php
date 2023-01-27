@@ -29,17 +29,17 @@
 
                 {{-- Calamity Information --}}
 
-                <li>
-                    <a href="#" class=" waves-effect">
+                {{-- <li>
+                    <a href="{{ route('manage.calamity') }}" class=" waves-effect">
                         <i class="ri-calendar-2-line"></i>
                         <span>Calamity Information</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- Barangay Information --}}
 
                 <li>
-                    <a href="#" class=" waves-effect">
+                    <a href="{{ route('barangay.directory') }}" class=" waves-effect">
                         <i class="nav-icon fa fa-university"></i>
                         <span>Barangay Information</span>
                     </a>

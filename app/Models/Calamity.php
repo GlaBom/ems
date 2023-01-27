@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Evacuee extends Model
+class Calamity extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'last_name',
-        'first_name',
-        'middle_name',
-        'gender'
+        'calamity_type',
+        'description',
+        'start_date',
+        'end_date'
     ];
+
 }
