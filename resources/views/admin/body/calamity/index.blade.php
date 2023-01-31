@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Evacuees Information</h4>
+                        <h4 class="mb-sm-0">Calamity Information</h4>
                     </div>
                 </div>
             </div>
@@ -20,11 +20,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
                                 <div class="row">
 
                                     <div class="d-flex flex-row justify-content-between">
                                         <div>
-                                            <a href="{{ route('add.evacuee') }}"
+                                            <a href="{{ route('calamity.add') }}"
                                                 class="btn btn-info btn-sm mb-0 bg-dark waves-effect waves-light"
                                                 type="button">+&nbsp; Add</a>
                                         </div>
@@ -37,10 +38,10 @@
                                         <thead>
                                             <tr style="cursor: pointer;">
                                                 <th>ID</th>
-                                                <th>Last Name</th>
-                                                <th>First Name</th>
-                                                <th>Middle Name</th>
-                                                <th>Gender</th>
+                                                <th>Calamity Type</th>
+                                                <th>Description</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -49,26 +50,27 @@
                                                 $i = 1;
                                             @endphp
 
-                                            @foreach ($data as $evacuee)
+                                            @foreach ($data as $calamity)
                                                 <tr data-id="1" style="cursor: pointer;">
                                                     <td> {{ $i++ }} </td>
-                                                    <td> {{ $evacuee->last_name }} </td>
-                                                    <td> {{ $evacuee->first_name }} </td>
-                                                    <td> {{ $evacuee->middle_name }} </td>
-                                                    <td> {{ $evacuee->gender }} </td>
-
+                                                    <td> {{ $calamity->calamity_type }} </td>
+                                                    <td> {{ $calamity->description }} </td>
+                                                    <td> {{ $calamity->start_date }} </td>
+                                                    <td> {{ $calamity->end_date }} </td>
                                                     <td>
-                                                        <a href=" {{ url('/manage/edit_evacuee/'.$evacuee->id) }} "
+                                                        <a href=" {{ url('calamity/edit/' . $calamity->id) }} "
                                                             data-bs-original-title="Edit user">
                                                             <i class="fas fa-user-edit text-secondary"
                                                                 aria-hidden="true"></i>
                                                         </a>
+
                                                         <span>
-                                                            <a href=" {{ url('/manage/delete_evacuee/'.$evacuee->id) }} ">
-                                                            <i class="cursor-pointer fas fa-trash text-secondary"
-                                                                aria-hidden="true"></i></a>
+                                                            <a href=" {{ url('/calamity/delete/' . $calamity->id) }} ">
+                                                                <i class="cursor-pointer fas fa-trash text-secondary"
+                                                                    aria-hidden="true"></i></a>
                                                         </span>
                                                     </td>
+                                                </tr>
                                             @endforeach
 
                                         </tbody>
@@ -77,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> <!-- end col -->
             </div>
         </div>
     </div>

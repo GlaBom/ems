@@ -24,7 +24,7 @@
                     <div class="card" data-select2-id="145">
                         <div class="card-body" data-select2-id="144">
 
-                            <form action=" {{ url('/manage/save_evacuee') }} " method="POST" data-select2-id="13">
+                            <form action=" {{ url('/evacuee/store') }} " method="POST" data-select2-id="13">
                                 @csrf
 
                                 @if (Session::has('success'))
@@ -33,7 +33,7 @@
                                     </div>
                                 @endif
 
-                                <form action=" {{ url('/manage/save_evacuee') }} " method="POST" data-select2-id="13">
+                                <form action=" {{ url('/evacuee/store') }} " method="POST" data-select2-id="13">
                                     @csrf
 
                                     <div class="row">

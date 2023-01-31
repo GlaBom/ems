@@ -22,7 +22,7 @@
                     <div class="card" data-select2-id="145">
                         <div class="card-body" data-select2-id="144">
 
-                            <form action= " {{ url('/manage/update_evacuee') }} " method="post" data-select2-id="13">
+                            <form action= " {{ url('/evacuee/update') }} " method="post" data-select2-id="13">
                                 @csrf
 
                                 @if (Session::has('success'))
@@ -31,7 +31,7 @@
                                     </div>
                                 @endif
 
-                                <form action=" {{ url('/manage/update_evacuee') }} " method="post" data-select2-id="13">
+                                <form action=" {{ url('/evacuee/update') }} " method="post" data-select2-id="13">
                                     @csrf
 
                                     <input type="hidden" name='id'value={{ $data->id }}>
@@ -46,7 +46,7 @@
                                                 <label class="form-label">Last Name</label>
                                                 <div class="col-sm-10">
                                                     <input name='last_name' class="form-control"
-                                                        type="text"value={{ $data->last_name }}>
+                                                        type="text"value="{{ $data->last_name }}">
                                                     @error('last_name')
                                                         <div class="alert alert-danger" role="alert">
                                                             {{ $message }}
@@ -63,7 +63,7 @@
                                                 <label class="form-label">First Name</label>
                                                 <div class="col-sm-10">
                                                     <input name='first_name' class="form-control" type="text"
-                                                        value= {{ $data->first_name }}>
+                                                        value= "{{ $data->first_name }}">
                                                     @error('first_name')
                                                         <div class="alert alert-danger" role="alert">
                                                             {{ $message }}
@@ -91,7 +91,7 @@
                                             <div class="mb-0 position-relative"> <br>
                                                 <label class="form-label">Gender</label>
                                                 <select id="inputState" class="form-select @error('gender') is-invalid @enderror" name="gender">
-                                                    <option value="{{ $data->gender }}" disabled selected>Choose Gender</option>
+                                                    <option value={{ $data->gender }} disabled selected>Choose Gender</option>
                                                     <option @error('gender') selected @enderror value="Male">Male</option>
                                                     <option @error('gender') selected @enderror Value="Female">Female</option>
                                                   </select>

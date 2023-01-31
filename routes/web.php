@@ -6,6 +6,7 @@ use App\Http\Controllers\EvacueeController;
 use App\Http\Controllers\BarangayController;
 use App\Http\Controllers\CalamityController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ECenterController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -42,24 +43,46 @@ Route::controller(adminController::class)->group(function () {
     Route::post('/update/password', 'UpdatePassword')->name('update.password');
 });
 
-Route::controller(evacueeController::class)->group(function () {
-    Route::get('/manage/evacuee', 'view')->name('manage.evacuee');
-    Route::get('/manage/add_evacuee', 'addEvacuee')->name('add.evacuee');
-    Route::post('/manage/save_evacuee', 'saveEvacuee')->name('save.evacuee');
-    Route::get('/manage/edit_evacuee/{id}', 'editEvacuee')->name('edit.evacuee');
-    Route::post('/manage/update_evacuee', 'updateEvacuee')->name('update.evacuee');
-    Route::get('/manage/delete_evacuee/{id}', 'deleteEvacuee')->name('delete.evacuee');
+//Evacuee
+
+Route::controller(evacueeController::class)->prefix('evacuee')->group(function () {
+    Route::get('/', 'index')->name('evacuee.index');
+    Route::get('/add', 'add')->name('evacuee.add');
+    Route::get('/edit/{id}', 'edit')->name('evacuee.edit');
+    Route::post('/store', 'store')->name('evacuee.store');
+    Route::post('/update', 'update')->name('evacuee.update');
+    Route::delete('/destroy/{id}', 'destroy')->name('evacuee.destroy');
 });
 
-Route::controller(barangayController::class)->group(function () {
-    Route::get('/barangay/directory', 'view')->name('barangay.directory');
-    Route::get('/manage/add_barangay', 'addBarangay')->name('add.barangay');
-    Route::post('/manage/save_barangay', 'saveBarangay')->name('save.barangay');
+//Calamity
+Route::controller(CalamityController::class)->prefix('calamity')->group(function () {
+    Route::get('/', 'index')->name('calamity.index');
+    Route::get('/add', 'add')->name('calamity.add');
+    Route::post('/store', 'store')->name('calamity.store');
+    Route::get('/edit/{id}', 'edit')->name('calamity.edit');
+    Route::post('/update', 'update')->name('calamity.update');
+    Route::get('/delete/{id}', 'delete')->name('calamity.delete');
 });
 
-Route::controller(calamityController::class)->group(function () {
-    Route::get('/manage/calamity', 'viewCalamity')->name('manage.calamity');
-    
+//Barangay
+
+Route::controller(BarangayController::class)->prefix('barangay')->group(function () {
+    Route::get('/', 'index')->name('barangay.index');
+    Route::get('/add', 'add')->name('barangay.add');
+    Route::post('/store', 'store')->name('barangay.store');
+    Route::get('/edit/{id}', 'edit')->name('barangay.edit');
+    Route::post('/update', 'update')->name('barangay.update');
+    Route::get('/delete/{id}', 'delete')->name('barangay.delete');
+});
+
+//Evacuation Center
+Route::controller(EcenterController::class)->prefix('ecenter')->group(function () {
+    Route::get('/', 'index')->name('ecenter.index');
+    Route::get('/add', 'add')->name('ecenter.add');
+    Route::post('/store', 'store')->name('ecenter.store');
+    Route::get('/edit/{id}', 'edit')->name('ecenter.edit');
+    Route::post('/update', 'update')->name('ecenter.update');
+    Route::get('/delete/{id}', 'delete')->name('ecenter.delete');
 });
 
 require __DIR__ . '/auth.php';

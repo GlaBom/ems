@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            BarangaySeeder::class     
+            BarangaySeeder::class,
+            UserSeeder::class 
         ]);
     }
 }

@@ -20,6 +20,7 @@ class BarangaySeeder extends Seeder
             'barangay_name' => 'Balayhangin',
             'barangay_chairman' => 'Lazaro Halili',
             'contact_number' => NULL,
+            'status' => 'Activate',
 
             'created_at'=> now(),
 		    'updated_at'=> now()
@@ -30,6 +31,7 @@ class BarangaySeeder extends Seeder
             'barangay_name' => 'Bangyas',
             'barangay_chairman' => 'Rex Dungo',
             'contact_number' => NULL,
+            'status' => 'Deactivate',
 
             'created_at'=> now(),
 		    'updated_at'=> now()

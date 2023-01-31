@@ -1,6 +1,5 @@
 @extends('admin.admin_master')
 @section('admin')
-    
 
 <div class="page-content">
     <div class="container-fluid">
@@ -53,7 +52,7 @@
                             <div class="flex-grow-1">
                                 <p class="text-truncate fw-bold font-size-18 mb-2">Evacuees</p>
                             <h4 class="mb-2"> {{$totalEvacuees}} </h4>
-                                <a href=" {{ route('manage.evacuee') }} ">View</a>
+                                <a href=" {{ route('evacuee.index') }} ">View</a>
                                 {{-- <p class="text-muted mb-0"><span class="text-danger fw-bold font-size-12 me-2"><i class="ri-arrow-right-down-line me-1 align-middle"></i>1.09%</span>from previous period</p> --}}
                             </div>
                             {{-- <div class="avatar-sm">
@@ -72,7 +71,7 @@
                             <div class="flex-grow-1">
                                 <p class="text-truncate fw-bold font-size-18 mb-2">Barangays</p>
                                 <h4 class="mb-2">{{$totalBarangays}}</h4>
-                                <a href=" {{ route('barangay.directory') }} ">View</a>
+                                <a href=" {{ route('barangay.index') }} ">View</a>
                                 
                                 {{-- <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>16.2%</span>from previous period</p> --}}
                             </div>
@@ -91,8 +90,8 @@
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate fw-bold font-size-18 mb-2">Evacuation Centers</p>
-                                <h4 class="mb-2"> 0 </h4>
-                                <a href=" # ">View</a>
+                                <h4 class="mb-2">{{$totalEcenters}}</h4>
+                                <a href=" {{ route('ecenter.index') }} ">View</a>
                                 {{-- <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>11.7%</span>from previous period</p> --}}
                             </div>
                             {{-- <div class="avatar-sm">

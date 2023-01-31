@@ -29,17 +29,17 @@
 
                 {{-- Calamity Information --}}
 
-                {{-- <li>
-                    <a href="{{ route('manage.calamity') }}" class=" waves-effect">
+                <li>
+                    <a href="{{ route('calamity.index') }}" class=" waves-effect">
                         <i class="ri-calendar-2-line"></i>
                         <span>Calamity Information</span>
                     </a>
-                </li> --}}
+                </li>
 
                 {{-- Barangay Information --}}
 
                 <li>
-                    <a href="{{ route('barangay.directory') }}" class=" waves-effect">
+                    <a href="{{ route('barangay.index') }}" class=" waves-effect">
                         <i class="nav-icon fa fa-university"></i>
                         <span>Barangay Information</span>
                     </a>
@@ -49,7 +49,7 @@
                 {{-- Evacuation Center --}}
 
                 <li>
-                    <a href="#" class=" waves-effect">
+                    <a href="{{ route('ecenter.index') }}" class=" waves-effect">
                         <i class="nav-icon fa fa-hotel"></i>
                         <span>Evacuation Center</span>
                     </a>
@@ -64,7 +64,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         {{-- <li><a href=" {{ route('add.evacuee') }} ">Add Evacuee</a></li> --}}
-                        <li><a href="{{ route('manage.evacuee') }}">Manage Evacuee</a></li>
+                        <li><a href="{{ route('evacuee.index') }}">Manage Evacuee</a></li>
                         <li><a href="#">Disaster Assistance Family Access Card (DAFAC)</a></li>
                     </ul>
                 </li>
