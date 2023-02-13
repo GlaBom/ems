@@ -13,6 +13,10 @@ class Evacuee extends Model
         'last_name',
         'first_name',
         'middle_name',
-        'gender'
+        'dob',
+        'age',
+        'gender',
+        'barangay',
+        'e_center'
     ];
 }

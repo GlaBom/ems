@@ -44,7 +44,7 @@
                                             <label class="form-label">Barangay Name</label>
                                             <div class="col-sm-10">
                                                 <input name='barangay_name' class="form-control"
-                                                    type="text"value="{{ $data->barangay_name }}">
+                                                    type="text"value="{{ $data->barangay_name }}"readonly>
                                                 @error('barangay_name')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
@@ -79,26 +79,6 @@
                                             <div class="col-sm-10">
                                                 <input name='contact_number' class="form-control" type="text"
                                                 value="{{ $data->contact_number }}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {{-- status --}}
-
-                                    <div class="col-md-3">
-                                        <div class="mb-0 position-relative"> <br>
-                                            <label class="form-label">Status</label>
-                                            <div class="col-sm-10">
-                                                <select id="inputState" class="form-select @error('status') is-invalid @enderror" name="status">
-                                                <option value={{ $data->status }} disabled selected>Choose status</option>
-                                                <option @error('status') selected @enderror value="Activate">Activate</option>
-                                                <option @error('status') selected @enderror Value="Deactivate">Deactivate</option>
-                                              </select>
-                                              @error('status')
-                                                <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $message }}</strong>
-                                                </span>
-                                              @enderror
                                             </div>
                                         </div>
                                     </div>

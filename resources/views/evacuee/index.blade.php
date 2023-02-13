@@ -37,10 +37,11 @@
                                         <thead>
                                             <tr style="cursor: pointer;">
                                                 <th>ID</th>
-                                                <th>Last Name</th>
-                                                <th>First Name</th>
-                                                <th>Middle Name</th>
+                                                <th>Full Name</th>
+                                                <th>Age</th>
                                                 <th>Gender</th>
+                                                <th>Barangay</th>
+                                                <th>Evacuation Center</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -52,10 +53,11 @@
                                             @foreach ($data as $evacuee)
                                                 <tr data-id="1" style="cursor: pointer;">
                                                     <td> {{ $i++ }} </td>
-                                                    <td> {{ $evacuee->last_name }} </td>
-                                                    <td> {{ $evacuee->first_name }} </td>
-                                                    <td> {{ $evacuee->middle_name }} </td>
+                                                    <td> {{ $evacuee->last_name }}, {{ $evacuee->first_name }}, {{ $evacuee->middle_name }}</td>
+                                                    <td> 1 </td>
                                                     <td> {{ $evacuee->gender }} </td>
+                                                    <td> {{ $evacuee->barangay }} </td>
+                                                    <td> {{ $evacuee->e_center }} </td>
 
                                                     <td>
                                                         <a href=" {{ url('/evacuee/edit/' . $evacuee->id) }} "
@@ -64,19 +66,12 @@
                                                                 aria-hidden="true"></i>
                                                         </a>
 
-                                                        {{-- <form method="POST"
-                                                            action=" {{ route('evacuee.destroy', $evacuee->id) }} ">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit"><i class="cursor-pointer fas fa-trash text-secondary"
-                                                                aria-hidden="true"></i></button>
-                                                        </form> --}}
-
                                                         <span>
                                                             <a href=" {{ url('/evacuee/destroy/' . $evacuee->id) }} ">
                                                                 <i class="cursor-pointer fas fa-trash text-secondary"
                                                                     aria-hidden="true"></i></a>
                                                         </span>
+
                                                     </td>
                                             @endforeach
 

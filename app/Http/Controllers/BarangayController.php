@@ -11,14 +11,14 @@ class BarangayController extends Controller
     public function index(){
         $data = Barangay::get();
    
-        return view ('admin.body.barangay.barangay_index',compact('data'));
+        return view ('barangay.index',compact('data'));
     }
 
     //Create
     public function add()
     {
         $data = Barangay::get();
-        return view ('admin.body.barangay.action');
+        return view ('barangay.action');
     }
 
     //Store
@@ -46,7 +46,7 @@ class BarangayController extends Controller
     public function edit($id)
     {
         $data = Barangay::where('id', '=', $id) ->first();
-        return view ('admin.body.barangay.edit',compact('data'));
+        return view ('barangay.edit',compact('data'));
     }
 
     //Update

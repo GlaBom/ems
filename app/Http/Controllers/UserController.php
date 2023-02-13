@@ -3,12 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserType;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        //Array portion is for you to except pages.
+        //$this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth');
+    }
+
+    // ADMIN
+
+    public function index()
+    {
+        if(Auth::user()->usertype == 'admin')
+        {
+            $data = User::all();
+            $user_types = UserType::all();
+            return view ('user.index', compact('data','user_types'));
+        }
+
+        {
+            return view('errors.401');
+        }
+    }
+
+    public function createUser()
+    {
+        if(Auth::user()->usertype == 'admin')
+        {
+            $data = User::all();
+            $user_types = UserType::all();
+            return view ('user.index', compact('data','user_types'));
+        }
+
+        {
+            return view('errors.401');
+        }
+    }
+
+
+    // ALL USERS
+
+    // delete profile
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
@@ -26,28 +70,34 @@ class AdminController extends Controller
     }
     //end method
 
-
-    public function Profile(Request $request)
+    // view profile
+    public function viewProfile(Request $request)
     {
         $id=Auth::user()->id;
-        $adminData=User::find($id);
-        return view('admin.admin_profile_view',compact('adminData'));
+        $userData=User::find($id);
+        return view('profile.index',compact('userData'));
     }
     //end method
 
-    public function EditProfile(Request $request)
+    // edit profile
+    public function editProfile(Request $request)
     {
         $id=Auth::user()->id;
         $editData=User::find($id);
-        return view('admin.edit_profile',compact('editData'));
+        return view('profile.edit',compact('editData'));
     }
     //end method
 
-    public function StoreProfile (Request $request) {
+    // store profile
+    public function storeProfile (Request $request) {
 
         $id=Auth::user()->id;
         $data=User::find($id);
-        $data->name = $request->name;
+
+        $data->last_name = $request->last_name;
+        $data->first_name = $request->first_name;
+        $data->middle_name = $request->middle_name;
+        $data->usertype = $request->usertype;
         $data->email = $request->email;
         $data->username = $request->username;
 
@@ -65,16 +115,18 @@ class AdminController extends Controller
                 'alert-type' => 'info'
             );
 
-            return redirect()->route('admin.profile')->with($notification);
+            return redirect()->route('user.profile')->with($notification);
     }
     //end method
 
-    public function ChangePassword(){
-        return view('admin.admin_change_password');
+    // change password
+    public function changePassword(){
+        return view('admin.change_password');
     }
     //end method
 
-    public function UpdatePassword(Request $request){
+    // update password
+    public function updatePassword(Request $request){
         
         $validateData = $request->validate([
             'current_password' => 'required',

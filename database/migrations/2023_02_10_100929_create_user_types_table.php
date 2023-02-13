@@ -13,16 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('evacuees', function (Blueprint $table) {
+        Schema::create('user_types', function (Blueprint $table) {
             $table->id();
-            $table->string('last_name');
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('dob');
-            $table->string('age');
-            $table->string('gender');
-            $table->string('barangay');
-            $table->string('e_center');
+            $table->string('usertype')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evacuees');
+        Schema::dropIfExists('user_types');
     }
 };

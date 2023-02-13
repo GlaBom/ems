@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\EvacueeController;
 use App\Http\Controllers\BarangayController;
 use App\Http\Controllers\CalamityController;
@@ -33,14 +33,15 @@ Route::middleware('auth')->group(function () {
 
 //Admin All Route
 
-Route::controller(adminController::class)->group(function () {
-    Route::get('/admin/logout', 'destroy')->name('admin.logout');
-    Route::get('/admin/profile', 'Profile')->name('admin.profile');
-    Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-    Route::post('/store/profile', 'StoreProfile')->name('store.profile');
+Route::controller(userController::class)->prefix('user')->group(function () {
+    Route::get('/', 'index')->name('user.index');
+    Route::get('/logout', 'destroy')->name('admin.logout');
+    Route::get('/profile', 'viewProfile')->name('user.profile');
+    Route::get('/edit/profile', 'editProfile')->name('edit.profile');
+    Route::post('/store/profile', 'storeProfile')->name('store.profile');
 
-    Route::get('/change/password', 'ChangePassword')->name('change.password');
-    Route::post('/update/password', 'UpdatePassword')->name('update.password');
+    Route::get('/change/password', 'changePassword')->name('change.password');
+    Route::post('/update/password', 'updatePassword')->name('update.password');
 });
 
 //Evacuee
@@ -51,7 +52,7 @@ Route::controller(evacueeController::class)->prefix('evacuee')->group(function (
     Route::get('/edit/{id}', 'edit')->name('evacuee.edit');
     Route::post('/store', 'store')->name('evacuee.store');
     Route::post('/update', 'update')->name('evacuee.update');
-    Route::delete('/destroy/{id}', 'destroy')->name('evacuee.destroy');
+    Route::get('/destroy/{id}', 'destroy')->name('evacuee.destroy');
 });
 
 //Calamity

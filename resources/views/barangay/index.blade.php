@@ -21,18 +21,6 @@
                         <div class="card-body">
                             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
-                                <div class="row">
-
-                                    <div class="d-flex flex-row justify-content-between">
-                                        <div>
-                                            <a href="{{ route('barangay.add') }}"
-                                                class="btn btn-info btn-sm mb-0 bg-dark waves-effect waves-light"
-                                                type="button">+&nbsp; Add</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
                                 <div class="table-responsive">
                                     <table class="table table-editable table-nowrap align-middle table-edits">
                                         <thead>
@@ -41,7 +29,6 @@
                                                 <th>Barangay</th>
                                                 <th>Barangay Chairman</th>
                                                 <th>Contact Number</th>
-                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -56,8 +43,6 @@
                                                     <td> {{ $barangay->barangay_name }} </td>
                                                     <td> {{ $barangay->barangay_chairman }} </td>
                                                     <td> {{ $barangay->contact_number }} </td>
-                                                    <td> {{ $barangay->status }} </td>
-                                                    <td></td>
                                                     <td>
                                                         <a href=" {{ url('barangay/edit/' . $barangay->id) }} "
                                                             data-bs-original-title="Edit user">

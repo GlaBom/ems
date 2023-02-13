@@ -11,14 +11,14 @@ class CalamityController extends Controller
      public function index(){
         $data = Calamity::get();
    
-        return view ('admin.body.calamity.index',compact('data'));
+        return view ('calamity.index',compact('data'));
     }
 
     //Create
     public function add()
     {
         $data = Calamity::get();
-        return view ('admin.body.calamity.add');
+        return view ('calamity.add');
     }
 
     //Store
@@ -46,7 +46,7 @@ class CalamityController extends Controller
      public function edit($id)
      {
          $data = Calamity::where('id', '=', $id) ->first();
-         return view ('admin.body.calamity.edit',compact('data'));
+         return view ('calamity.edit',compact('data'));
      }
  
      //Update
