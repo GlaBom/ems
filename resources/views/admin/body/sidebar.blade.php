@@ -21,7 +21,6 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-<<<<<<< HEAD
 
                 {{-- Users --}}
 
@@ -110,9 +109,7 @@
                     </a>
                 </li>
 
-=======
              
->>>>>>> b72db2a1947354a0f60b75fa39bf3143158f71d0
                 {{-- Calamity Information --}}
 
                 <li>
@@ -155,11 +152,8 @@
                     </ul>
                 </li>
 
-<<<<<<< HEAD
                 {{-- Users --}}
 
-=======
->>>>>>> b72db2a1947354a0f60b75fa39bf3143158f71d0
                 {{-- Reports and Statistics --}}
 
                 <li>

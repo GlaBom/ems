@@ -154,22 +154,12 @@
                                         <div class="mb-0 mb-0 position-relative"><br>
                                             <label class="form-label">Evacuation Center</label>
 
-                                            {{-- <select class="form-select @error('e_center') is-invalid @enderror"
-                                                name="e_center">
-                                                <option value="" selected>Choose...</option>
-                                                @foreach ($e_centers as $e_center)
-                                                    <option value="{{ $e_center->id }}" {{ $e_center->ec_name ==old('e_center',$selectedOptionE_center)?'selected':" }}> {{ $option->option_value }}</option>
-                                                @endforeach
-                                            </select> --}}
-
                                             <select class="form-select @error('e_center') is-invalid @enderror" name="e_center">
 
                                                 <option value="" selected>Choose...</option>
 
                                                 @foreach ($e_centers as $e_center)
-                                                    <option value="{{ $e_center->id }}"
-                                                        {{ $e_center->ec_name == old('e_center', $selectedOptionEcenter) ? 'selected' : '' }}>
-                                                        {{ $e_center->option_value }}
+                                                    <option value="{{ $e_center->id }}">{{ $e_center->ec_name }}
                                                     </option>
                                                 @endforeach
                                             </select>

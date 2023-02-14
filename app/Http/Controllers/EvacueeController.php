@@ -12,30 +12,24 @@ class EvacueeController extends Controller
     
     public function index()
     {
-<<<<<<< HEAD
         $data = Evacuee::get();
-        return view('evacuee.index',compact('data'));
-=======
+
         $data = Evacuee::all();
         $barangays = Barangay::all();
         $e_centers = Ecenter::all();
 
-        return view('admin.body.evacuee.index',['data'=>$data, 'barangays'=>$barangays, 'e_centers' => $e_centers]);
->>>>>>> b72db2a1947354a0f60b75fa39bf3143158f71d0
+        return view('evacuee.index',compact('data', 'barangays', 'e_centers'));
     }
 
     public function add()
     {
-<<<<<<< HEAD
         $data = Evacuee::get();
-        return view('evacuee.add');
-=======
+        
         $data = Evacuee::all();
         $barangays = Barangay::all();
         $e_centers = Ecenter::all();
 
-        return view('admin.body.evacuee.add',['data'=>$data, 'barangays'=>$barangays, 'e_centers' => $e_centers]);
->>>>>>> b72db2a1947354a0f60b75fa39bf3143158f71d0
+        return view('evacuee.add',compact('data', 'barangays', 'e_centers'));
     }
 
     public function store(Request $request )
@@ -80,14 +74,11 @@ class EvacueeController extends Controller
     public function edit($id)
     {
         $data = Evacuee::where('id', '=', $id) ->first();
-<<<<<<< HEAD
         return view ('evacuee.edit',compact('data'));
-=======
         $selectedOptionEcenter = $data ->e_center;
 
 
         return view ('admin.body.evacuee.edit',compact('data'));
->>>>>>> b72db2a1947354a0f60b75fa39bf3143158f71d0
     }
 
     public function update(Request $request )
