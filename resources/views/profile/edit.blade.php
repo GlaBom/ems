@@ -21,7 +21,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Last Name</label>
                                     <div class="col-sm-10">
-                                        <input name='name' class="form-control" type="text"
+                                        <input name='last_name' class="form-control" type="text"
                                             value=" {{ $editData->last_name }}">
                                         @error('last_name')
                                             <div class="alert alert-danger" role="alert">
@@ -36,7 +36,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">First Name</label>
                                     <div class="col-sm-10">
-                                        <input name='name' class="form-control" type="text"
+                                        <input name='first_name' class="form-control" type="text"
                                             value=" {{ $editData->first_name }} ">
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Middle Name</label>
                                     <div class="col-sm-10">
-                                        <input name='name' class="form-control" type="text"
+                                        <input name='middle_name' class="form-control" type="text"
                                             value=" {{ $editData->middle_name }}">
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                     <div class="row mb-3">
                                         <label for="example-text-input" class="col-sm-2 col-form-label">Usertype</label>
                                         <div class="col-sm-10">
-                                            <input name='name' class="form-control" type="text"
+                                            <input name='usertype' class="form-control" type="text"
                                                 value=" {{ $editData->usertype }} ">
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Usertype</label>
                                     <div class="col-sm-10">
-                                        <input name='name' class="form-control" type="text"
+                                        <input name='usertype' class="form-control" type="text"
                                             value=" {{ $editData->usertype }} " readonly>
                                     </div>
                                 </div>

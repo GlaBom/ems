@@ -34,32 +34,36 @@
 
                                 <div class="row">
 
-                                    {{-- ec_name --}}
-
-                                    <div class="col-md-3">
-                                        <div class="mb-0 position-relative"><br>
-                                            <label class="form-label">Evacuation Center</label>
-                                            <div class="col-sm-10">
-                                                <input name='ec_name' class="form-control"
-                                                    type="text"value="{{ old('ec_name') }}">
-                                                @error('ec_name')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {{-- barangay --}}
-
                                     <div class="col-md-3">
                                         <div class="mb-0 position-relative"><br>
                                             <label class="form-label">Barangay</label>
                                             <div class="col-sm-10">
-                                                <input name='barangay' class="form-control"
-                                                    type="text"value="{{ old('barangay') }}">
-                                                @error('barangay')
+                                                <select name="barangay_name" class="form-control" required>
+                                                    <option value="" disabled selected>Select Barangay</option>
+                                    
+                                                    @php
+                                                        $get = DB::table('barangays')->get();
+                                                        foreach($get as $value)
+                                                        {
+                                                            echo "<option value=".$value->id.">$value->barangay_name</option>";
+                                                        }
+                                                    @endphp
+                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                    {{-- ec_name --}}
+
+                                    <div class="col-md-3">
+                                        <div class="mb-0 position-relative"><br>
+                                            <label class="form-label">Center Name</label>
+                                            <div class="col-sm-10">
+                                                <input name='ec_name' class="form-control" required
+                                                    type="text"value="{{ old('ec_name') }}">
+                                                @error('ec_name')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
@@ -85,30 +89,29 @@
                                         </div>
                                     </div>
 
-                                    {{-- date_of_activation --}}
+                                    {{-- capacity --}}
 
                                     <div class="col-md-3">
                                         <div class="mb-0 position-relative"> <br>
-                                            <label class="form-label">Date of Activation</label>
+                                            <label class="form-label">Capacity</label>
                                             <div class="col-sm-10">
-                                                <input name='date_of_activation' class="form-control" type="date"
-                                                    value=" {{ old('date_of_activation') }}">
+                                                <input name='capacity' class="form-control" type="number" step="1"
+                                                    value=" {{ old('capacity') }}">
                                             </div>
                                         </div>
                                     </div>
 
-                                    {{-- date_of_deactivation --}}
+                                    {{-- capacity --}}
 
                                     <div class="col-md-3">
                                         <div class="mb-0 position-relative"> <br>
-                                            <label class="form-label">Date of Deactivation</label>
+                                            <label class="form-label">Occupancy</label>
                                             <div class="col-sm-10">
-                                                <input name='date_of_deactivation' class="form-control" type="date"
-                                                    value=" {{ old('date_of_deactivation') }}">
+                                                <input name='occupancy' class="form-control" type="number" step="1"
+                                                    value=" {{ old('occupancy') }}">
                                             </div>
                                         </div>
                                     </div>
-                                    
 
                                 </div>
 

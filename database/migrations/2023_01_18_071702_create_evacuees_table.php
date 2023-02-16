@@ -17,14 +17,23 @@ return new class extends Migration
             $table->id();
             $table->string('last_name');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('dob');
             $table->string('age');
             $table->string('gender');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->string('tenure_status');
+            $table->string('housing_condition');
+            $table->string('health_condition');
+            $table->string('remark')->nullable();
+            $table->string('calamity')->nullable();
             $table->string('barangay');
             $table->string('e_center');
             $table->timestamps();
         });
+
+        
     }
 
     /**

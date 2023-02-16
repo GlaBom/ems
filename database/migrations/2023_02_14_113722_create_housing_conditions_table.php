@@ -13,7 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        
+        Schema::create('housing_conditions', function (Blueprint $table) {
+            $table->id();
+            $table->string('housing_condition_name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ecenters');
+        Schema::dropIfExists('housing_conditions');
     }
 };

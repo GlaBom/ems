@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Calamity Information</h4>
+                        <h4 class="mb-sm-0">Emergency Information</h4>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
 
                                     <div class="d-flex flex-row justify-content-between">
                                         <div>
-                                            <a href="{{ route('calamity.add') }}"
+                                            <a href="{{ route('emergency.add') }}"
                                                 class="btn btn-info btn-sm mb-0 bg-dark waves-effect waves-light"
                                                 type="button">+&nbsp; Add</a>
                                         </div>
@@ -38,10 +38,9 @@
                                         <thead>
                                             <tr style="cursor: pointer;">
                                                 <th>ID</th>
-                                                <th>Calamity Type</th>
+                                                <th>Emergency Type</th>
+                                                <th>Date Occured</th>
                                                 <th>Description</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -50,22 +49,21 @@
                                                 $i = 1;
                                             @endphp
 
-                                            @foreach ($data as $calamity)
+                                            @foreach ($data as $emergency)
                                                 <tr data-id="1" style="cursor: pointer;">
                                                     <td> {{ $i++ }} </td>
-                                                    <td> {{ $calamity->calamity_type }} </td>
-                                                    <td> {{ $calamity->description }} </td>
-                                                    <td> {{ $calamity->start_date }} </td>
-                                                    <td> {{ $calamity->end_date }} </td>
+                                                    <td> {{ $emergency->emergency_type }} </td>
+                                                    <td> {{ $emergency->date_occured }} </td>
+                                                    <td> {{ $emergency->description }} </td>
                                                     <td>
-                                                        <a href=" {{ url('calamity/edit/' . $calamity->id) }} "
+                                                        <a href=" {{ url('emergency/edit/' . $emergency->id) }} "
                                                             data-bs-original-title="Edit user">
                                                             <i class="fas fa-user-edit text-secondary"
                                                                 aria-hidden="true"></i>
                                                         </a>
 
                                                         <span>
-                                                            <a href=" {{ url('/calamity/delete/' . $calamity->id) }} ">
+                                                            <a href=" {{ url('/emergency/delete/' . $emergency->id) }} ">
                                                                 <i class="cursor-pointer fas fa-trash text-secondary"
                                                                     aria-hidden="true"></i></a>
                                                         </span>

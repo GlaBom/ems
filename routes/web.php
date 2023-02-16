@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EvacueeController;
 use App\Http\Controllers\BarangayController;
-use App\Http\Controllers\CalamityController;
+use App\Http\Controllers\EmergencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ECenterController;
 use Illuminate\Auth\Events\Login;
@@ -55,14 +55,14 @@ Route::controller(evacueeController::class)->prefix('evacuee')->group(function (
     Route::get('/destroy/{id}', 'destroy')->name('evacuee.destroy');
 });
 
-//Calamity
-Route::controller(CalamityController::class)->prefix('calamity')->group(function () {
-    Route::get('/', 'index')->name('calamity.index');
-    Route::get('/add', 'add')->name('calamity.add');
-    Route::post('/store', 'store')->name('calamity.store');
-    Route::get('/edit/{id}', 'edit')->name('calamity.edit');
-    Route::post('/update', 'update')->name('calamity.update');
-    Route::get('/delete/{id}', 'delete')->name('calamity.delete');
+//emergency
+Route::controller(EmergencyController::class)->prefix('emergency')->group(function () {
+    Route::get('/', 'index')->name('emergency.index');
+    Route::get('/add', 'add')->name('emergency.add');
+    Route::post('/store', 'store')->name('emergency.store');
+    Route::get('/edit/{id}', 'edit')->name('emergency.edit');
+    Route::post('/update', 'update')->name('emergency.update');
+    Route::get('/delete/{id}', 'delete')->name('emergency.delete');
 });
 
 //Barangay
@@ -72,7 +72,7 @@ Route::controller(BarangayController::class)->prefix('barangay')->group(function
     Route::get('/add', 'add')->name('barangay.add');
     Route::post('/store', 'store')->name('barangay.store');
     Route::get('/edit/{id}', 'edit')->name('barangay.edit');
-    Route::post('/update', 'update')->name('barangay.update');
+    Route::put('/update/{id}', 'update')->name('barangay.update');
     Route::get('/delete/{id}', 'delete')->name('barangay.delete');
 });
 

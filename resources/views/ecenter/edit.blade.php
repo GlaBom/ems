@@ -22,7 +22,7 @@
                     <div class="card" data-select2-id="145">
                         <div class="card-body" data-select2-id="144">
 
-                            <form action="{{ url('/ecenter/update') }}" method="POST" data-select2-id="13">
+                            <form action="{{ url('/ecenter/update') }}" method="PUT" data-select2-id="13">
                                 @csrf
 
                                 @if (Session::has('success'))
@@ -35,34 +35,37 @@
 
                                     @csrf
 
-                                    <input type="hidden" name='id'value={{ $data->id }}>
+                                     {{-- barangay_name --}}
 
-                                    {{-- ec_name --}}
-
-                                    <div class="col-md-3">
-                                        <div class="mb-0 position-relative"><br>
-                                            <label class="form-label">Evacuation Center</label>
+                                     <div class="col-md-3">
+                                        <div class="mb-0 position-relative">
+                                            <label class="form-label">Barangay</label>
                                             <div class="col-sm-10">
-                                                <input name='ec_name' class="form-control"
-                                                    type="text"value="{{ $data->ec_name }}">
-                                                @error('ec_name')
-                                                    <div class="alert alert-danger" role="alert">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
+                                                
+                                                <select name="barangay_name" class="form-control" required>
+                                                    <option value="{{ $ecenter->barangay_name }}" disabled selected>Select Barangay</option>
+                                                    @php
+                                                        $get = DB::table('barangays')->get();
+                                                        foreach($get as $value)
+                                                        {
+                                                            echo "<option value=".$value->id.">$value->barangay_name</option>";
+                                                        }
+                                                    @endphp
+                                    
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {{-- barangay --}}
+                                    {{-- ec_name --}}
 
                                     <div class="col-md-3">
-                                        <div class="mb-0 position-relative"> <br>
-                                            <label class="form-label">Barangay</label>
+                                        <div class="mb-0 position-relative">
+                                            <label class="form-label">Center Name</label>
                                             <div class="col-sm-10">
-                                                <input name='barangay' class="form-control" type="text"
-                                                value="{{ $data->barangay }}">
-                                                @error('barangay')
+                                                <input name='ec_name' class="form-control" type="text"
+                                                    value="{{ $ecenter->ec_name }}">
+                                                @error('ec_name')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
                                                     </div>
@@ -74,11 +77,11 @@
                                     {{-- manager --}}
 
                                     <div class="col-md-3">
-                                        <div class="mb-0 position-relative"> <br>
+                                        <div class="mb-0 position-relative">
                                             <label class="form-label">Manager</label>
                                             <div class="col-sm-10">
                                                 <input name='manager' class="form-control" type="text"
-                                                value="{{ $data->manager }}">
+                                                    value="{{ $ecenter->manager }}">
                                                 @error('manager')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
@@ -88,29 +91,30 @@
                                         </div>
                                     </div>
 
-                                    {{-- date_of_activation --}}
+                                    {{-- capacity --}}
 
                                     <div class="col-md-3">
-                                        <div class="mb-0 position-relative"> <br>
-                                            <label class="form-label">Date of Activation</label>
+                                        <div class="mb-0 position-relative">
+                                            <label class="form-label">Capacity</label>
                                             <div class="col-sm-10">
-                                                <input name='date_of_activation' class="form-control" type="date"
-                                                value="{{ $data->date_of_activation }}">
+                                                <input name='capacity' class="form-control" type="number" step="1"
+                                                    value="{{ $ecenter->capacity }}">
                                             </div>
                                         </div>
                                     </div>
 
-                                    {{-- date_of_deactivation --}}
+                                    {{-- occupancy --}}
 
                                     <div class="col-md-3">
-                                        <div class="mb-0 position-relative"> <br>
-                                            <label class="form-label">Date of Deactivation</label>
+                                        <div class="mb-0 position-relative"><br>
+                                            <label class="form-label">Occupancy</label>
                                             <div class="col-sm-10">
-                                                <input name='date_of_deactivation' class="form-control" type="date"
-                                                value="{{ $data->date_of_deactivation }}">
+                                                <input name='occupancy' class="form-control" type="number" step="1"
+                                                    value="{{ $ecenter->occupancy }}">
                                             </div>
                                         </div>
                                     </div>
+
 
                                 </div>
 

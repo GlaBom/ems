@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('calamities', function (Blueprint $table) {
+        Schema::create('remarks', function (Blueprint $table) {
             $table->id();
-            $table->string('calamity_type');
-            $table->string('description');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->string('remark_name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calamities');
+        Schema::dropIfExists('remarks');
     }
 };

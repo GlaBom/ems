@@ -100,6 +100,7 @@ class UserController extends Controller
         $data->usertype = $request->usertype;
         $data->email = $request->email;
         $data->username = $request->username;
+        $data->profile_image = $request->profile_image;
 
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
@@ -108,6 +109,7 @@ class UserController extends Controller
             $file->move(public_path('upload/admin_images'),$filename);
             $data['profile_image'] = $filename;
         }
+       
             $data->save();
 
             $notification = array(
@@ -116,6 +118,7 @@ class UserController extends Controller
             );
 
             return redirect()->route('user.profile')->with($notification);
+           
     }
     //end method
 

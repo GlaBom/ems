@@ -26,32 +26,32 @@
 
                 <li>
                     <a href=" {{route('user.index')}} " class="waves-effect">
-                        <i class="fas fa-user"></i>
+                        <i class=" fas fa-users"></i>
                         {{-- <span class="badge rounded-pill bg-success float-end">3</span> --}}
-                        <span>User Management</span>
+                        <span>Users</span>
                     </a>
                 </li>
 
-                {{-- Calamity Information --}}
+                {{-- emergency --}}
 
                 <li>
-                    <a href="{{ route('calamity.index') }}" class=" waves-effect">
+                    <a href="{{ route('emergency.index') }}" class=" waves-effect">
                         <i class="fas fa-clipboard"></i>
-                        <span>Calamity Information</span>
+                        <span>Emergency</span>
                     </a>
                 </li>
 
-                {{-- Barangay Information --}}
+                {{-- Barangay --}}
 
                 <li>
                     <a href="{{ route('barangay.index') }}" class=" waves-effect">
                         <i class="nav-icon fa fa-university"></i>
-                        <span>Barangay Information</span>
+                        <span>Barangay</span>
                     </a>
 
                 </li>
 
-                {{-- Evacuation Center --}}
+                {{-- Evacuation --}}
 
                 <li>
                     <a href="{{ route('ecenter.index') }}" class=" waves-effect">
@@ -60,23 +60,19 @@
                     </a>
                 </li>
 
-                {{-- Evacuee Information --}}
+                {{-- Evacuee --}}
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="nav-icon fas fa-address-card"></i>
-                        <span>Evacuee Information</span>
+                    <a href="{{ route('evacuee.index') }}" class=" waves-effect">
+                        <i class="nav-icon  fas fa-address-book"></i>
+                        <span>Evacuees</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        {{-- <li><a href=" {{ route('add.evacuee') }} ">Add Evacuee</a></li> --}}
-                        <li><a href="{{ route('evacuee.index') }}">Manage Evacuee</a></li>
-                        <li><a href="#">Disaster Assistance Family Access Card (DAFAC)</a></li>
-                    </ul>
                 </li>
+
 
                 {{-- Reports and Statistics --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-profile-line"></i>
                         <span>Reports and Statistics</span>
@@ -84,7 +80,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                        
                     </ul>
-                </li>
+                </li> --}}
 
                 {{-- Activity Logs --}}
 
@@ -110,21 +106,21 @@
                 </li>
 
              
-                {{-- Calamity Information --}}
+                {{-- Emergency --}}
 
                 <li>
-                    <a href="{{ route('calamity.index') }}" class=" waves-effect">
+                    <a href="{{ route('emergency.index') }}" class=" waves-effect">
                         <i class="ri-calendar-2-line"></i>
-                        <span>Calamity Information</span>
+                        <span>Emergency</span>
                     </a>
                 </li>
 
-                {{-- Barangay Information --}}
+                {{-- Barangay --}}
 
                 <li>
                     <a href="{{ route('barangay.index') }}" class=" waves-effect">
                         <i class="nav-icon fa fa-university"></i>
-                        <span>Barangay Information</span>
+                        <span>Barangay</span>
                     </a>
 
                 </li>
@@ -138,21 +134,14 @@
                     </a>
                 </li>
 
-                {{-- Evacuee Information --}}
+                {{-- Evacuees --}}
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="nav-icon fas fa-address-card"></i>
-                        <span>Evacuee Information</span>
+                    <a href="{{ route('evacuee.index') }}" class=" waves-effect">
+                        <i class="nav-icon  fas fa-address-book"></i>
+                        <span>Evacuees</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        {{-- <li><a href=" {{ route('add.evacuee') }} ">Add Evacuee</a></li> --}}
-                        <li><a href="{{ route('evacuee.index') }}">Manage Evacuee</a></li>
-                        <li><a href="#">Disaster Assistance Family Access Card (DAFAC)</a></li>
-                    </ul>
                 </li>
-
-                {{-- Users --}}
 
                 {{-- Reports and Statistics --}}
 
@@ -166,7 +155,7 @@
                         <li><a href="#">Evacuees by Gender</a></li>
                         <li><a href="#">Evacuees by Age</a></li>
                         <li><a href="#">Evacuees by Barangay</a></li>
-                        <li><a href="#">Evacuees by Calamity</a></li>
+                        <li><a href="#">Evacuees by Emergency</a></li>
                         <li><a href="#">Evacuees by Center</a></li>
                     </ul>
                 </li>
@@ -182,17 +171,6 @@
                 </li> --}}
 
                 @endif
-
-                 {{-- Users --}}
-
-                 <li>
-                    <a href="#" class="waves-effect">
-                        <i class="fa-solid fa-users-line fa-primary-color: "></i>
-                        {{-- <span class="badge rounded-pill bg-success float-end">3</span> --}}
-                        <span>User Management</span>
-                    </a>
-                </li>
-
             </ul>
         </div>
         <!-- Sidebar -->

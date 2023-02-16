@@ -91,10 +91,11 @@
                                             <div class="mb-0 position-relative"> <br>
                                                 <label class="form-label">Gender</label>
                                                 <select id="inputState" class="form-select @error('gender') is-invalid @enderror" name="gender">
-                                                    <option value={{ $data->gender }} disabled selected>Choose Gender</option>
-                                                    <option @error('gender') selected @enderror value="Male">Male</option>
-                                                    <option @error('gender') selected @enderror Value="Female">Female</option>
+                                                    <option value=""disabled selected>Choose Gender</option>
+                                                    <option @error('gender') value="Male" {{ old('gender', $data->gender) === 'Male' ? 'selected' : '' }}>Male</option>
+                                                    <option @error('gender') value="Female" {{ old('gender', $data->gender) === 'Female' ? 'selected' : '' }}>Female</option>
                                                   </select>
+                                            </div>
                                                   @error('gender')
                                                     <span class="invalid-feedback" role="alert">
                                                       <strong>{{ $message }}</strong>

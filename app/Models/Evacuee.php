@@ -16,6 +16,13 @@ class Evacuee extends Model
         'dob',
         'age',
         'gender',
+        'address',
+        'phone_number',
+        'tenure_status',
+        'housing_condition',
+        'health_condition',
+        'remark',
+        'calamity',
         'barangay',
         'e_center'
     ];

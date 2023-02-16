@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Evacuation Center Informartion</h4>
+                        <h4 class="mb-sm-0">Evacuation Center Information</h4>
                     </div>
                 </div>
             </div>
@@ -38,11 +38,11 @@
                                         <thead>
                                             <tr style="cursor: pointer;">
                                                 <th>ID</th>
-                                                <th>Evacuation Center</th>
                                                 <th>Barangay</th>
+                                                <th>Center Name</th>
                                                 <th>Manager</th>
-                                                <th>Date of Activation</th>
-                                                <th>Date of Deactivation</th>
+                                                <th>Capacity</th>
+                                                <th>Occupancy</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -54,12 +54,11 @@
                                             @foreach ($data as $ecenter)
                                                 <tr data-id="1" style="cursor: pointer;">
                                                     <td> {{ $i++ }} </td>
+                                                    <td> {{ $ecenter->barangay_name }} </td>
                                                     <td> {{ $ecenter->ec_name }} </td>
-                                                    <td> {{ $ecenter->barangay }} </td>
                                                     <td> {{ $ecenter->manager }} </td>
-                                                    <td> {{ $ecenter->date_of_activation }} </td>
-                                                    <td> {{ $ecenter->date_of_deactivation }} </td>
-                
+                                                    <td> {{ $ecenter->capacity }} </td>
+                                                    <td> {{ $ecenter->occupancy }} </td>
                                                     <td>
                                                         <a href=" {{ url('ecenter/edit/' . $ecenter->id) }} "
                                                             data-bs-original-title="Edit user">
