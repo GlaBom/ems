@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TenureStatus;
+use App\Models\HousingCondition;
+use App\Models\HealthCondition;
 use App\Models\Barangay;
 use App\Models\Ecenter;
 use Illuminate\Http\Request;
@@ -12,24 +15,25 @@ class EvacueeController extends Controller
 
     public function index()
     {
-        $data = Evacuee::get();
 
-        $data = Evacuee::all();
+        $data = Evacuee::join('barangays', 'barangays.id', '=', 'evacuees.barangay_id')
+        ->select('barangays.*', 'barangays.barangay_name as brgy', 'evacuees.*')
+        ->get();
+
         $barangays = Barangay::all();
-        $e_centers = Ecenter::all();
 
-        return view('evacuee.index', compact('data', 'barangays', 'e_centers'));
+        return view('evacuee.index',
+        compact('data','barangays'));
     }
 
     public function add()
     {
+
+
         $data = Evacuee::get();
+        $barangays = Barangay::get();
 
-        $data = Evacuee::all();
-        $barangays = Barangay::all();
-        $e_centers = Ecenter::all();
-
-        return view('evacuee.add', compact('data', 'barangays', 'e_centers'));
+        return view('evacuee.add', compact('data', 'barangays'));
     }
 
     public function store(Request $request)
@@ -39,9 +43,8 @@ class EvacueeController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['string', 'max:255'],
             'dob' => ['required'],
-            // 'age' => ['required'],
             'gender' => ['required'],
-            'barangay' => ['required'],
+            'barangay_name' => ['required'],
             'e_center' => ['required'],
 
         ]);
@@ -51,10 +54,8 @@ class EvacueeController extends Controller
         $evacuee->first_name = $request->first_name;
         $evacuee->middle_name = $request->middle_name;
         $evacuee->dob = $request->dob;
-        $evacuee->age = $request->age;
         $evacuee->gender = $request->gender;
-        $evacuee->barangay = $request->barangay;
-        $evacuee->e_center = $request->e_center;
+        $evacuee->barangay_id = $request->barangay_name;
 
         $evacuee->save();
 
@@ -64,6 +65,7 @@ class EvacueeController extends Controller
     public function edit($id)
     {
         $ecenter = Ecenter::find($id);
+        
         $barangays = Barangay::all();
         return view('ecenter.edit', compact('ecenter', 'barangays'));
     }

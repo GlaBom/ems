@@ -49,13 +49,6 @@
                                                             <i class="fas fa-user-edit text-secondary"
                                                                 aria-hidden="true"></i>
                                                         </a>
-
-
-                                                        <span>
-                                                            <a href=" {{ url('/barangay/delete/' . $barangay->id) }} ">
-                                                                <i class="cursor-pointer fas fa-trash text-secondary"
-                                                                    aria-hidden="true"></i></a>
-                                                        </span>
                                                     </td>
                                                 </tr>
                                             @endforeach

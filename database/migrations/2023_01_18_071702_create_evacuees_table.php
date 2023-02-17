@@ -13,6 +13,54 @@ return new class extends Migration
      */
     public function up()
     {
+
+        Schema::create('tenure_status', function (Blueprint $table) {
+            $table->id();
+            $table->string('status_name');
+            $table->timestamps();
+        });
+
+        Schema::create('housing_conditions', function (Blueprint $table) {
+            $table->id();
+            $table->string('housing_condition_name');
+            $table->timestamps();
+        });
+
+        Schema::create('health_conditions', function (Blueprint $table) {
+            $table->id();
+            $table->string('health_condition_name');
+            $table->timestamps();
+        });
+
+        Schema::create('barangays', function (Blueprint $table) {
+            $table->id();
+            $table->string('barangay_name');
+            $table->string('barangay_chairman')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('ecenters', function (Blueprint $table) {
+            $table->id();
+            $table->string('ec_name');
+            $table->string('manager');
+            $table->string('capacity')->nullable();
+            $table->string('occupancy')->nullable();
+
+            $table->unsignedBigInteger('barangay_id');
+            $table->foreign('barangay_id')->references('id')->on('barangays')->onDelete('cascade')->onUpdate(('cascade'));
+            $table->timestamps();
+        });
+
+        Schema::create('emergencies', function (Blueprint $table) {
+            $table->id();
+            $table->string('emergency_type');
+            $table->string('date_occured');
+            $table->string('description');
+            $table->timestamps();
+        });
+
+
         Schema::create('evacuees', function (Blueprint $table) {
             $table->id();
             $table->string('last_name');
@@ -25,17 +73,37 @@ return new class extends Migration
             $table->string('phone_number');
 
             $table->unsignedBigInteger('tenure_status_id');
-            $table->foreign('tenure_status_id')->references('id')->on('tenure_status')->onDelete('cascade')->onUpdate(('cascade'));
-            // $table->string('housing_condition_id')->nullable();
-            // $table->string('health_condition_id')->nullable();
-            // $table->string('calamity_id')->nullable();
-            // $table->string('barangay_id')->nullable();
-            // $table->string('e_center_id')->nullable();
+            $table->foreign('tenure_status_id')
+                  ->references('id')
+                  ->on('tenure_status')
+                  ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('housing_condition_id');
+            $table->foreign('housing_condition_id')
+                    ->references('id')
+                    ->on('housing_conditions')
+                    ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('health_condition_id');
+            $table->foreign('health_condition_id')
+                    ->references('id')
+                    ->on('health_conditions')
+                    ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('barangay_id');
+            $table->foreign('barangay_id')
+                    ->references('id')
+                    ->on('barangays')
+                    ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('ecenter_id');
+            $table->foreign('ecenter_id')
+                    ->references('id')
+                    ->on('ecenters')
+                    ->onUpdate('cascade');
 
             $table->timestamps();
         });
-
-        
     }
 
     /**
@@ -46,5 +114,8 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('evacuees');
+        Schema::dropIfExists('tenure_status');
+        Schema::dropIfExists('housing_conditions');
+        Schema::dropIfExists('health_conditions');
     }
 };

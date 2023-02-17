@@ -13,27 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('barangays', function (Blueprint $table) {
-            $table->id();
-            $table->string('barangay_name');
-            $table->string('barangay_chairman')->nullable();
-            $table->string('contact_number')->nullable();
-            $table->timestamps();
-        });
+       //
 
-        Schema::create('ecenters', function (Blueprint $table) {
-            $table->id();
-            $table->string('ec_name');
-            $table->string('manager');
-            $table->string('capacity')->nullable();
-            $table->string('occupancy')->nullable();
-
-            $table->unsignedBigInteger('barangay_id');
-            $table->foreign('barangay_id')->references('id')->on('barangays')->onDelete('cascade')->onUpdate(('cascade'));
-            $table->timestamps();
-        });
-
-        
     }
 
     /**
@@ -44,6 +25,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('barangays');
-        Schema::dropIfExists('ecenters');
+
     }
 };

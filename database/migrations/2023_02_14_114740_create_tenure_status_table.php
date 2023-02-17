@@ -13,11 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tenure_status', function (Blueprint $table) {
-            $table->id();
-            $table->string('status_name');
-            $table->timestamps();
-        });
+       //
     }
 
     /**

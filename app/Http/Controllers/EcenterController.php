@@ -75,18 +75,12 @@ class EcenterController extends Controller
     $capacity = $request->capacity;
     $occupancy = $request->occupancy;
     $barangay_id = $request->barangay_name;
- 
+
     Ecenter::where('id', '=', $id)->update([
         'ec_name'=>$ec_name,
         'manager'=>$manager,
         'capacity'=>$capacity,
         'occupancy'=>$occupancy,
-       
-
-    ]);
-
-    Barangay::where('id', '=', $id)->update([
-      
         'barangay_name' =>$barangay_id,
 
     ]);

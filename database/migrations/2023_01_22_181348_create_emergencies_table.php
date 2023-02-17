@@ -13,13 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('emergencies', function (Blueprint $table) {
-            $table->id();
-            $table->string('emergency_type');
-            $table->string('date_occured');
-            $table->string('description');
-            $table->timestamps();
-        });
+       //
     }
 
     /**

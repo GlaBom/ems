@@ -13,11 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('health_conditions', function (Blueprint $table) {
-            $table->id();
-            $table->string('health_condition_name');
-            $table->timestamps();
-        });
+        //
     }
 
     /**

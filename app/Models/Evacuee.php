@@ -6,35 +6,42 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evacuee extends Model
 {
-    protected $fillable = ['last_name', 'first_name', 'middle_name', 'dob', 'age', 'gender', 'address', 'phone_number'];
+    protected $fillable = ['last_name',
+                           'first_name',
+                           'middle_name',
+                           'dob',
+                           'age',
+                           'gender',
+                           'address',
+                           'phone_number'];
 
-    public function tenureStatus()
-    {
-        return $this->belongsTo(TenureStatus::class);
-    }
+                           public function TenureStatus()
+                           {
+                               return $this->belongsTo(Evacuee::class, 'tenure_status_id','id');
+                           }
 
-    // public function housingCondition()
-    // {
-    //     return $this->belongsTo(HousingCondition::class);
-    // }
+                           public function HousingConditions()
+                           {
+                               return $this->belongsTo(Evacuee::class, 'housing_condition_id','id');
+                           }
 
-    // public function healthCondition()
-    // {
-    //     return $this->belongsTo(HealthCondition::class);
-    // }
+                           public function HealthConditions()
+                           {
+                               return $this->belongsTo(Evacuee::class, 'health_condition_id','id');
+                           }
 
-    // public function emergency()
-    // {
-    //     return $this->belongsTo(Emergency::class);
-    // }
+                           public function Barangay()
+                           {
+                               return $this->belongsTo(Evacuee::class, 'barangay_id','id');
+                           }
 
-    // public function barangay()
-    // {
-    //     return $this->belongsTo(Barangay::class);
-    // }
+                           public function Ecenter()
+                           {
+                               return $this->belongsTo(Evacuee::class, 'ecenter_id','id');
+                           }
 
-    // public function ecenter()
-    // {
-    //     return $this->belongsTo(Ecenter::class, 'e_center_id');
-    // }
+
+
+
+
 }

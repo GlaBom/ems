@@ -13,11 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('housing_conditions', function (Blueprint $table) {
-            $table->id();
-            $table->string('housing_condition_name');
-            $table->timestamps();
-        });
+       //
     }
 
     /**
