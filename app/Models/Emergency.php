@@ -2,17 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Emergency extends Model
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'emergency_type',
-        'date_occured',
-        'description'
-    ];
-
+    protected $fillable = ['emergency_type', 'date_occured', 'description'];
 }

@@ -72,7 +72,7 @@ Route::controller(BarangayController::class)->prefix('barangay')->group(function
     Route::get('/add', 'add')->name('barangay.add');
     Route::post('/store', 'store')->name('barangay.store');
     Route::get('/edit/{id}', 'edit')->name('barangay.edit');
-    Route::put('/update/{id}', 'update')->name('barangay.update');
+    Route::post('/update', 'update')->name('barangay.update');
     Route::get('/delete/{id}', 'delete')->name('barangay.delete');
 });
 

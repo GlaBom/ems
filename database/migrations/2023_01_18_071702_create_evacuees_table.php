@@ -23,13 +23,15 @@ return new class extends Migration
             $table->string('gender');
             $table->string('address');
             $table->string('phone_number');
-            $table->string('tenure_status');
-            $table->string('housing_condition');
-            $table->string('health_condition');
-            $table->string('remark')->nullable();
-            $table->string('calamity')->nullable();
-            $table->string('barangay');
-            $table->string('e_center');
+
+            $table->unsignedBigInteger('tenure_status_id');
+            $table->foreign('tenure_status_id')->references('id')->on('tenure_status')->onDelete('cascade')->onUpdate(('cascade'));
+            // $table->string('housing_condition_id')->nullable();
+            // $table->string('health_condition_id')->nullable();
+            // $table->string('calamity_id')->nullable();
+            // $table->string('barangay_id')->nullable();
+            // $table->string('e_center_id')->nullable();
+
             $table->timestamps();
         });
 

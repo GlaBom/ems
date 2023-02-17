@@ -22,7 +22,7 @@
                     <div class="card" data-select2-id="145">
                         <div class="card-body" data-select2-id="144">
 
-                            <form action="{{ url('/ecenter/update') }}" method="PUT" data-select2-id="13">
+                            <form action="{{ url('/ecenter/update') }}" method="POST" data-select2-id="13">
                                 @csrf
 
                                 @if (Session::has('success'))
@@ -43,7 +43,7 @@
                                             <div class="col-sm-10">
                                                 
                                                 <select name="barangay_name" class="form-control" required>
-                                                    <option value="{{ $ecenter->barangay_name }}" disabled selected>Select Barangay</option>
+                                                    <option value="" disabled selected>Select Barangay</option>
                                                     @php
                                                         $get = DB::table('barangays')->get();
                                                         foreach($get as $value)

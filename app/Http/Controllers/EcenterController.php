@@ -55,11 +55,11 @@ class EcenterController extends Controller
     public function edit($id)
     {
         $ecenter = Ecenter::find($id);
-        $barangays =  Barangay::get();
+        $barangays =  Barangay::find($id);
         return view('ecenter.edit', compact('ecenter', 'barangays'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
 {
     $request->validate([
         'ec_name' => ['required', 'string', 'max:255'],
@@ -69,15 +69,28 @@ class EcenterController extends Controller
         'barangay_name' => ['required'],
     ]);
 
-    $ecenter = Ecenter::find($id);
-    $ecenter->ec_name = $request->input('ec_name');
-    $ecenter->manager = $request->input('manager');
-    $ecenter->capacity = $request->input('capacity');
-    $ecenter->occupancy = $request->input('occupancy');
-    $ecenter->barangay_id = $request->input('barangay_name');
-    $ecenter->save();
+    $id = $request ->id;
+    $ec_name = $request->ec_name;
+    $manager = $request->manager;
+    $capacity = $request->capacity;
+    $occupancy = $request->occupancy;
+    $barangay_id = $request->barangay_name;
+ 
+    Ecenter::where('id', '=', $id)->update([
+        'ec_name'=>$ec_name,
+        'manager'=>$manager,
+        'capacity'=>$capacity,
+        'occupancy'=>$occupancy,
+       
 
-    return redirect()->route('ecenter.index')->with('success', 'Evacuation center updated successfully.');
+    ]);
+
+    Barangay::where('id', '=', $id)->update([
+      
+        'barangay_name' =>$barangay_id,
+
+    ]);
+    return redirect() ->back()->with('success', 'Evacuation center updated successfully.');
 }
 
     //Delete
