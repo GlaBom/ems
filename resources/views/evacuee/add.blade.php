@@ -244,7 +244,7 @@
                                         <label class="form-label">Evacuation Center</label>
                                         <div class="col-sm-10">
                                             <select name="ec_name" class="form-control" required>
-                                                <option value="" disabled selected>Select Barangay</option>
+                                                <option value="" disabled selected>Select Evacuation Center</option>
 
                                                 @php
                                                 $get = DB::table('ecenters')->get();

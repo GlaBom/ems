@@ -7,74 +7,64 @@ use App\Models\Emergency;
 
 class EmergencyController extends Controller
 {
-     //View
-     public function index(){
-        $data = Emergency::get();
-   
-        return view ('emergency.index',compact('data'));
+    // View
+    public function index()
+    {
+        $emergencies = Emergency::all();
+        return view('emergency.index', compact('emergencies'));
     }
 
-    //Create
+    // Create
     public function add()
     {
-        $data = Emergency::get();
-        return view ('emergency.add');
+        $emergency_groups = ['Natural', 'Technological', 'Human-Caused'];
+        $main_types = [
+            'Natural' => ['Earthquake', 'Flood', 'Wildfire'],
+            'Technological' => ['Explosion', 'Fire', 'Gas Leak'],
+            'Human-Caused' => ['Terrorism', 'Armed Conflict', 'Cyber Attack']
+        ];
+        $emergencies = Emergency::get();
+        return view('emergency.add', compact('emergencies', 'emergency_groups', 'main_types'));
     }
 
-    //Store
-    public function store(Request $request )
+    // Store
+    public function store(Request $request)
     {
-        $request->validate([
-            'emergency_type' => ['required', 'string', 'max:255'],
-            'date_occured' => ['required'],
-            'description' => ['required', 'string', 'max:255'],
-           
-        ]);
-
-        $emergency =new Emergency();
-        $emergency-> emergency_type = $request->emergency_type;
-        $emergency-> date_occured = $request->date_occured;
-        $emergency-> description = $request->description;
-      
-        $emergency -> save();
-
+        $emergency = new Emergency();
+        $emergency->emergency_group = $request->emergency_group;
+        $emergency->main_type = $request->main_type;
+        $emergency->sub_type = $request->sub_type;
+        $emergency->date_occured = $request->date_occured;
+        $emergency->save();
         return redirect()->route('emergency.index');
     }
 
-     //Edit
-     public function edit($id)
-     {
-         $data = Emergency::where('id', '=', $id) ->first();
-         return view ('emergency.edit',compact('data'));
-     }
- 
-     //Update
-     public function update(Request $request)
-     {
-        $request->validate([
-            'emergency_type' => ['required', 'string', 'max:255'],
-            'date_occured' => ['required'],
-            'description' => ['required', 'string', 'max:255'],
-        ]);
+    // Edit
+    public function edit($id)
+    {
+        $emergency = Emergency::findOrFail($id);
 
-         $id = $request ->id;
-         $emergency_type = $request->emergency_type;
-         $date_occured = $request->date_occured;
-         $description = $request->description; 
- 
-         Emergency::where('id', '=', $id)->update([
-             'emergency_type'=>$emergency_type,
-             'date_occured'=>$date_occured,
-             'description'=>$description,
- 
-         ]);
-         return redirect() ->back()->with('success', 'Emergency updated successfully.');
-     }
+        return view('emergency.edit', compact('emergency'));
 
-     //Delete
-     public function delete($id)
-     {
+    }
+
+    // Update
+    public function update(Request $request, $id)
+    {
+        $emergency = Emergency::findOrFail($id);
+        // Update the emergency data
+        $emergency->emergency_group = $request->emergency_group;
+        $emergency->main_type = $request->main_type;
+        $emergency->sub_type = $request->sub_type;
+        $emergency->date_occured = $request->date_occured;
+        $emergency->save();
+        return redirect()->route('emergency.index')->with('success', 'Emergency updated successfully.');
+    }
+
+    // Delete
+    public function delete($id)
+    {
         Emergency::where('id', '=', $id)->delete();
-         return redirect() ->back()-> with('success','Emergency deleted successfully');
-     }
+        return redirect()->back()->with('success', 'Emergency deleted successfully');
+    }
 }

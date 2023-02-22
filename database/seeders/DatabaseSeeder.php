@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             TenureStatus::class,
             HousingConditions::class,
             HealthConditions::class,
+            EmergencyTypeSeeder::class,
         ]);
     }
 }

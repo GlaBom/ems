@@ -54,12 +54,13 @@ return new class extends Migration
 
         Schema::create('emergencies', function (Blueprint $table) {
             $table->id();
-            $table->string('emergency_type');
+            $table->string('emergency_group');
+            $table->string('main_type');
+            $table->string('sub_type')->nullable();
+            $table->string('name')->nullable();
             $table->string('date_occured');
-            $table->string('description');
             $table->timestamps();
         });
-
 
         Schema::create('evacuees', function (Blueprint $table) {
             $table->id();

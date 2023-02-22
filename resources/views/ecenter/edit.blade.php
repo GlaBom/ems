@@ -22,9 +22,9 @@
                     <div class="card" data-select2-id="145">
                         <div class="card-body" data-select2-id="144">
 
-                            <form action="{{ url('/ecenter/update') }}" method="POST" data-select2-id="13">
+                            <form action="{{ route('ecenter.update',$ecenter->id) }}" method="POST">
                                 @csrf
-
+                                @method('PUT')
                                 @if (Session::has('success'))
                                     <div class="alert alert-success" role="alert">
                                         {{ Session::get('success') }}
@@ -43,15 +43,11 @@
                                             <div class="col-sm-10">
 
                                                 <select name="barangay_name" class="form-control" required>
-                                                    <option value="" disabled selected>Select Barangay</option>
-                                                    @php
-                                                        $get = DB::table('barangays')->get();
-                                                        foreach($get as $value)
-                                                        {
-                                                            echo "<option value=".$value->id.">$value->barangay_name</option>";
-                                                        }
-                                                    @endphp
-
+                                                    @foreach ($barangays as $barangay)
+                                                    <option value="{{ $barangay->id }}" {{ $barangay->id ===
+                                                        $ecenter->barangay_id ? 'selected' : '' }}>{{ $barangay->barangay_name }}
+                                                    </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -64,7 +60,7 @@
                                             <label class="form-label">Center Name</label>
                                             <div class="col-sm-10">
                                                 <input name='ec_name' class="form-control" type="text"
-                                                    value="{{ $ecenter->ec_name }}">
+                                                    value="{{ $ecenter->ec_name }}" required>
                                                 @error('ec_name')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
@@ -74,14 +70,14 @@
                                         </div>
                                     </div>
 
-                                    {{-- manager --}}
+                                    {{-- camp_manager --}}
 
                                     <div class="col-md-3">
                                         <div class="mb-0 position-relative">
-                                            <label class="form-label">Manager</label>
+                                            <label class="form-label">Camp Manager</label>
                                             <div class="col-sm-10">
                                                 <input name='manager' class="form-control" type="text"
-                                                    value="{{ $ecenter->manager }}">
+                                                    value="{{ $ecenter->manager }}" required>
                                                 @error('manager')
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $message }}
@@ -98,7 +94,7 @@
                                             <label class="form-label">Capacity</label>
                                             <div class="col-sm-10">
                                                 <input name='capacity' class="form-control" type="number" step="1"
-                                                    value="{{ $ecenter->capacity }}">
+                                                    value="{{ $ecenter->capacity }}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +106,7 @@
                                             <label class="form-label">Occupancy</label>
                                             <div class="col-sm-10">
                                                 <input name='occupancy' class="form-control" type="number" step="1"
-                                                    value="{{ $ecenter->occupancy }}">
+                                                    value="{{ $ecenter->occupancy }}" required>
                                             </div>
                                         </div>
                                     </div>

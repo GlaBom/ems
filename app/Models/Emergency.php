@@ -6,7 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Emergency extends Model
 {
-    protected $fillable = ['emergency_type', 'date_occured', 'description'];
-
-
+    protected $fillable = ['emergency_group', 'main_type', 'sub_type', 'name','date_occured'];
 }

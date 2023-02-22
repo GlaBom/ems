@@ -78,7 +78,7 @@
 
                                 <div class="col-md-3">
                                     <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Manager</label>
+                                        <label class="form-label">Camp Manager</label>
                                         <div class="col-sm-10">
                                             <input name='manager' class="form-control" type="text"
                                                 value="{{ old('manager') }}">

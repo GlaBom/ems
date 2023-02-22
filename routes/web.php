@@ -16,11 +16,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-// Dashboard
-// Route::get('/dashboard', function () {
-//     return view('admin.index');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth','verified')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
@@ -59,9 +54,9 @@ Route::controller(evacueeController::class)->prefix('evacuee')->group(function (
 Route::controller(EmergencyController::class)->prefix('emergency')->group(function () {
     Route::get('/', 'index')->name('emergency.index');
     Route::get('/add', 'add')->name('emergency.add');
-    Route::post('/store', 'store')->name('emergency.store');
     Route::get('/edit/{id}', 'edit')->name('emergency.edit');
-    Route::post('/update', 'update')->name('emergency.update');
+    Route::post('/store', 'store')->name('emergency.store');
+    Route::put('/update/{id}', 'update')->name('emergency.update');
     Route::get('/delete/{id}', 'delete')->name('emergency.delete');
 });
 
@@ -80,10 +75,10 @@ Route::controller(BarangayController::class)->prefix('barangay')->group(function
 Route::controller(EcenterController::class)->prefix('ecenter')->group(function () {
     Route::get('/', 'index')->name('ecenter.index');
     Route::get('/add', 'add')->name('ecenter.add');
-    Route::post('/store', 'store')->name('ecenter.store');
     Route::get('/edit/{id}', 'edit')->name('ecenter.edit');
-    Route::post('/update', 'update')->name('ecenter.update');
-    Route::get('/delete/{id}', 'delete')->name('ecenter.delete');
+    Route::post('/store', 'store')->name('ecenter.store');
+    Route::put('/update/{id}', 'update')->name('ecenter.update');
+    Route::delete('/delete/{id}', 'delete')->name('ecenter.delete');
 });
 
 require __DIR__ . '/auth.php';

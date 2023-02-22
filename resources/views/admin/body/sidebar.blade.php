@@ -64,7 +64,7 @@
 
                 <li>
                     <a href="{{ route('evacuee.index') }}" class=" waves-effect">
-                        <i class="nav-icon  fas fa-address-book"></i>
+                        <i class="nav-icon fas fa-address-book"></i>
                         <span>Evacuees</span>
                     </a>
                 </li>
@@ -78,7 +78,7 @@
                         <span>Reports and Statistics</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                       
+
                     </ul>
                 </li> --}}
 
@@ -94,7 +94,7 @@
 
                 @elseif(auth()->user()->usertype == 'encoder')
 
-                
+
                 {{-- Dashboard --}}
 
                 <li>
@@ -105,7 +105,7 @@
                     </a>
                 </li>
 
-             
+
                 {{-- Emergency --}}
 
                 <li>
@@ -122,7 +122,6 @@
                         <i class="nav-icon fa fa-university"></i>
                         <span>Barangay</span>
                     </a>
-
                 </li>
 
                 {{-- Evacuation Center --}}
@@ -135,16 +134,14 @@
                 </li>
 
                 {{-- Evacuees --}}
-
                 <li>
                     <a href="{{ route('evacuee.index') }}" class=" waves-effect">
-                        <i class="nav-icon  fas fa-address-book"></i>
+                        <i class="nav-icon fas fa-address-book"></i>
                         <span>Evacuees</span>
                     </a>
                 </li>
 
                 {{-- Reports and Statistics --}}
-
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-profile-line"></i>
@@ -161,7 +158,6 @@
                 </li>
 
                 {{-- Activity Logs --}}
-
                 {{-- <li>
                     <a href="#" class="waves-effect">
                         <i class="fa-solid fa-users-line fa-primary-color: "></i>

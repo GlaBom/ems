@@ -12,10 +12,8 @@ use App\Models\Evacuee;
 
 class EvacueeController extends Controller
 {
-
     public function index()
     {
-
         $data = Evacuee::join('barangays', 'barangays.id', '=', 'evacuees.barangay_id')
         ->select('barangays.*', 'barangays.barangay_name as brgy', 'evacuees.*')
         ->get();
@@ -45,8 +43,7 @@ class EvacueeController extends Controller
             'dob' => ['required'],
             'gender' => ['required'],
             'barangay_name' => ['required'],
-            'e_center' => ['required'],
-
+            // 'e_center' => ['required'],
         ]);
 
         $evacuee = new Evacuee();
@@ -65,11 +62,10 @@ class EvacueeController extends Controller
     public function edit($id)
     {
         $ecenter = Ecenter::find($id);
-        
+
         $barangays = Barangay::all();
         return view('ecenter.edit', compact('ecenter', 'barangays'));
     }
-
 
     public function update(Request $request)
     {
