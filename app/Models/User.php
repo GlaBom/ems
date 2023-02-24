@@ -22,10 +22,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'first_name',
         'middle_name',
         'usertype',
+        'barangay_id',
+        'ecenter_id',
         'email',
         'username',
         'password'
     ];
+
+    public function Barangay()
+    {
+        return $this->belongsTo(Evacuee::class, 'barangay_id', 'id');
+    }
+
+    public function Ecenter()
+    {
+        return $this->belongsTo(Evacuee::class, 'ecenter_id', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

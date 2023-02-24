@@ -70,6 +70,8 @@
                 </li>
 
 
+
+
                 {{-- Reports and Statistics --}}
 
                 {{-- <li>
@@ -93,7 +95,6 @@
                 </li> --}}
 
                 @elseif(auth()->user()->usertype == 'encoder')
-
 
                 {{-- Dashboard --}}
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barangay;
+use App\Models\Ecenter;
 use App\Models\User;
 use App\Models\UserType;
 
@@ -21,32 +23,52 @@ class UserController extends Controller
 
     // ADMIN
 
-    public function index()
-    {
-        if(Auth::user()->usertype == 'admin')
-        {
-            $data = User::all();
-            $user_types = UserType::all();
-            return view ('user.index', compact('data','user_types'));
-        }
+   public function index()
+{
+    if (Auth::user()->usertype == 'admin') {
+        $data = User::join('barangays', 'barangays.id', '=', 'users.barangay_id')
+            ->join('ecenters', 'ecenters.id', '=', 'users.ecenter_id')
+            ->select('barangays.*', 'barangays.barangay_name as brgy', 'ecenters.*', 'ecenters.ec_name as ec', 'users.*')
+            ->get();
 
-        {
+        $barangays = Barangay::all();
+        $ecenters = Ecenter::all();
+        return view('user.index', compact('data',  'barangays', 'ecenters'));
+    } else {
+        return view('errors.401');
+    }
+}
+
+
+
+    public function store(Request $request)
+    {
+        if (Auth::user()->usertype == 'admin') {
+            $data = new User();
+            $data->last_name = $request->last_name;
+            $data->first_name = $request->first_name;
+            $data->middle_name = $request->middle_name;
+            $data->usertype = $request->usertype;
+            $data->barangay_id = $request->barangay_name;
+            $data->ecenter_id = $request->ec_name;
+            $data->email = $request->email;
+            $data->username = $request->username;
+            $data->password = Hash::make($request->password);
+
+            $data->save();
+
+
+            return redirect()->back();
+        } {
             return view('errors.401');
         }
     }
 
-    public function createUser()
+    //Delete
+    public function delete($id)
     {
-        if(Auth::user()->usertype == 'admin')
-        {
-            $data = User::all();
-            $user_types = UserType::all();
-            return view ('user.index', compact('data','user_types'));
-        }
-
-        {
-            return view('errors.401');
-        }
+        User::where('id', '=', $id)->delete();
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
 
 
@@ -73,26 +95,27 @@ class UserController extends Controller
     // view profile
     public function viewProfile(Request $request)
     {
-        $id=Auth::user()->id;
-        $userData=User::find($id);
-        return view('profile.index',compact('userData'));
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+        return view('profile.index', compact('userData'));
     }
     //end method
 
     // edit profile
     public function editProfile(Request $request)
     {
-        $id=Auth::user()->id;
-        $editData=User::find($id);
-        return view('profile.edit',compact('editData'));
+        $id = Auth::user()->id;
+        $editData = User::find($id);
+        return view('profile.edit', compact('editData'));
     }
     //end method
 
     // store profile
-    public function storeProfile (Request $request) {
+    public function storeProfile(Request $request)
+    {
 
-        $id=Auth::user()->id;
-        $data=User::find($id);
+        $id = Auth::user()->id;
+        $data = User::find($id);
 
         $data->last_name = $request->last_name;
         $data->first_name = $request->first_name;
@@ -105,32 +128,33 @@ class UserController extends Controller
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
 
-            $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'),$filename);
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'), $filename);
             $data['profile_image'] = $filename;
         }
-       
-            $data->save();
 
-            $notification = array(
-                'message' => 'Your account has been updated.',
-                'alert-type' => 'info'
-            );
+        $data->save();
 
-            return redirect()->route('user.profile')->with($notification);
-           
+        $notification = array(
+            'message' => 'Your account has been updated.',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('user.profile')->with($notification);
     }
     //end method
 
     // change password
-    public function changePassword(){
+    public function changePassword()
+    {
         return view('admin.change_password');
     }
     //end method
 
     // update password
-    public function updatePassword(Request $request){
-        
+    public function updatePassword(Request $request)
+    {
+
         $validateData = $request->validate([
             'current_password' => 'required',
             'new_password' => 'required',
@@ -140,23 +164,20 @@ class UserController extends Controller
 
         $hashedPassword = Auth::user()->password;
 
-        if (Hash::check($request->current_password,$hashedPassword)) {
+        if (Hash::check($request->current_password, $hashedPassword)) {
             $users = User::find(Auth::id());
             $users->password = bcrypt($request->new_password);
 
             $users->save();
 
-            session()->flash('message','Password Updated Successfully');
+            session()->flash('message', 'Password Updated Successfully');
 
-            return redirect() ->back();
+            return redirect()->back();
+        } else {
+            session()->flash('message', 'Current Password is not match');
+
+            return redirect()->back();
         }
-
-        else{
-            session()->flash('message','Current Password is not match');
-
-            return redirect() ->back();
-        }
-
     }
     //end method
 

@@ -10,10 +10,8 @@ class Evacuee extends Model
                            'first_name',
                            'middle_name',
                            'dob',
-                           'age',
                            'gender',
-                           'address',
-                           'phone_number'];
+                    ];
 
                            public function TenureStatus()
                            {

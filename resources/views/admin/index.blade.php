@@ -3,7 +3,7 @@
 
 <div class="page-content">
     <div class="container-fluid">
-        
+
         {{-- START PAGE TITLE --}}
 
         <div class="row">
@@ -33,18 +33,19 @@
                                 <p class="text-truncate fw-bold font-size-18 mb-2">Families</p>
                                 <h4 class="mb-2"> 0 </h4>
                                 <a href="#">View</a>
-                                
+
                                 {{-- <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>9.23%</span>from previous period</p> --}}
                             </div>
                             {{-- <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-primary rounded-3">
-                                    <i class="ri-shopping-cart-2-line font-size-24"></i>  
+                                    <i class="ri-shopping-cart-2-line font-size-24"></i>
                                 </span>
                             </div> --}}
-                        </div>                                            
+                        </div>
                     </div><!-- end cardbody -->
                 </div><!-- end card -->
             </div><!-- end col -->
+
             <div class="col-xl-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -57,13 +58,14 @@
                             </div>
                             {{-- <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-success rounded-3">
-                                    <i class="mdi mdi-currency-usd font-size-24"></i>  
+                                    <i class="mdi mdi-currency-usd font-size-24"></i>
                                 </span>
                             </div> --}}
-                        </div>                                              
+                        </div>
                     </div><!-- end cardbody -->
                 </div><!-- end card -->
             </div><!-- end col -->
+
             <div class="col-xl-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -72,15 +74,15 @@
                                 <p class="text-truncate fw-bold font-size-18 mb-2">Barangays</p>
                                 <h4 class="mb-2">{{$totalBarangays}}</h4>
                                 <a href=" {{ route('barangay.index') }} ">View</a>
-                                
+
                                 {{-- <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>16.2%</span>from previous period</p> --}}
                             </div>
                             {{-- <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-primary rounded-3">
-                                    <i class="ri-user-3-line font-size-24"></i>  
+                                    <i class="ri-user-3-line font-size-24"></i>
                                 </span>
                             </div> --}}
-                        </div>                                              
+                        </div>
                     </div><!-- end cardbody -->
                 </div><!-- end card -->
             </div><!-- end col -->
@@ -96,7 +98,7 @@
                             </div>
                             {{-- <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-success rounded-3">
-                                    <i class="mdi mdi-currency-btc font-size-24"></i>  
+                                    <i class="mdi mdi-currency-btc font-size-24"></i>
                                 </span>
                             </div>
                         </div>                                               --}}
@@ -175,7 +177,7 @@
                             </select>
                         </div>
                         <h4 class="card-title mb-4">Reports</h4>
-                        
+
                         <div class="row">
                             <div class="col-4">
                                 <div class="text-center mt-4">
@@ -210,7 +212,7 @@
         </div>
         <!-- end row -->
     </div>
-    
+
 </div>
 
 @endsection

@@ -98,9 +98,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- end barangay form --}}
-
         </div>
     </div>
 @endsection

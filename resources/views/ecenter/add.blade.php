@@ -56,7 +56,6 @@
                                     </div>
                                 </div>
 
-
                                 {{-- ec_name --}}
 
                                 <div class="col-md-3">

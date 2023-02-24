@@ -36,28 +36,21 @@
                                     <table class="table table-editable table-nowrap align-middle table-edits">
                                         <thead>
                                             <tr style="cursor: pointer;">
-                                                <th>ID</th>
                                                 <th>Full Name</th>
-                                                <th>Age</th>
+                                                <th>Date of Birth</th>
                                                 <th>Gender</th>
                                                 <th>Barangay</th>
-                                                <th>Evacuation Center</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php
-                                                $i = 1;
-                                            @endphp
 
-                                            @foreach ($data as $evacuee)
+                                            @foreach ($evacuees as $evacuee)
                                                 <tr data-id="1" style="cursor: pointer;">
-                                                    <td> {{ $i++ }} </td>
                                                     <td> {{ $evacuee->last_name }}, {{ $evacuee->first_name }}, {{ $evacuee->middle_name }}</td>
-                                                    <td> 1 </td>
                                                     <td> {{ $evacuee->gender }} </td>
-                                                    <td> {{ $evacuee->barangay }} </td>
-                                                    <td> {{ $evacuee->e_center }} </td>
+                                                    <td> {{ $evacuee->dob }} </td>
+                                                    <td> {{ $evacuee->barangay_name }} </td>
 
                                                     <td>
                                                         <a href=" {{ url('/evacuee/edit/' . $evacuee->id) }} "

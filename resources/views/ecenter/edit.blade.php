@@ -127,7 +127,7 @@
                 </div>
             </div>
 
-            {{-- end calamity form --}}
+            {{-- end ecenter form --}}
 
         </div>
     </div>

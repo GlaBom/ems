@@ -14,38 +14,26 @@ class EvacueeController extends Controller
 {
     public function index()
     {
-        $data = Evacuee::join('barangays', 'barangays.id', '=', 'evacuees.barangay_id')
+        $evacuees = Evacuee::join('barangays', 'barangays.id', '=', 'evacuees.barangay_id')
         ->select('barangays.*', 'barangays.barangay_name as brgy', 'evacuees.*')
         ->get();
 
         $barangays = Barangay::all();
 
         return view('evacuee.index',
-        compact('data','barangays'));
+        compact('evacuees','barangays'));
     }
 
     public function add()
     {
-
-
-        $data = Evacuee::get();
+        $evacuees = Evacuee::get();
         $barangays = Barangay::get();
 
-        return view('evacuee.add', compact('data', 'barangays'));
+        return view('evacuee.add', compact('evacuees', 'barangays'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'last_name' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['string', 'max:255'],
-            'dob' => ['required'],
-            'gender' => ['required'],
-            'barangay_name' => ['required'],
-            // 'e_center' => ['required'],
-        ]);
-
         $evacuee = new Evacuee();
         $evacuee->last_name = $request->last_name;
         $evacuee->first_name = $request->first_name;
@@ -56,52 +44,30 @@ class EvacueeController extends Controller
 
         $evacuee->save();
 
-        return redirect()->route('evacuee.index', ['evacuee_id' => $evacuee->id])->with('success', 'Evacuee added successfully.');
+        return redirect()->route('evacuee.index');
     }
 
     public function edit($id)
     {
-        $ecenter = Ecenter::find($id);
+        $evacuee = Evacuee::find($id);
 
         $barangays = Barangay::all();
-        return view('ecenter.edit', compact('ecenter', 'barangays'));
+        return view('evacuee.edit', compact('evacuee', 'barangays'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'last_name' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['string', 'max:255'],
-            'dob' => ['required'],
-            // 'age' => ['required'],
-            'gender' => ['required'],
-            'barangay' => ['required'],
-            'e_center' => ['required'],
-
-        ]);
-
-        $id = $request->id;
-        $last_name = $request->last_name;
-        $first_name = $request->first_name;
-        $middle_name = $request->middle_name;
-        $dob = $request->dob;
-        // $age = $request -> dob;
-        $gender = $request->gender;
-        $barangay = $request->barangay;
-        $e_center = $request->e_center;
 
         Evacuee::where('id', '=', $id)->update([
-            'last_name' => $last_name,
-            'first_name' => $first_name,
-            'middle_name' => $middle_name,
-            'dob' => $dob,
-            // 'age' => $age,
-            'gender' => $gender,
-            'barangay' => $barangay,
-            'e_center' => $e_center
+            'last_name' =>  $request->last_name,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'dob' => $request->dob,
+            'gender' => $request->gender,
+            'barangay_id' => $request->barangay_name,
 
         ]);
+
         return redirect()->back()->with('success', 'Evacuee updated successfully.');
     }
 

@@ -25,7 +25,6 @@
                                     <table class="table table-editable table-nowrap align-middle table-edits">
                                         <thead>
                                             <tr style="cursor: pointer;">
-                                                <th>ID</th>
                                                 <th>Barangay</th>
                                                 <th>Barangay Chairman</th>
                                                 <th>Contact Number</th>
@@ -33,13 +32,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php
-                                                $i = 1;
-                                            @endphp
-
                                             @foreach ($data as $barangay)
                                                 <tr data-id="1" style="cursor: pointer;">
-                                                    <td> {{ $i++ }} </td>
                                                     <td> {{ $barangay->barangay_name }} </td>
                                                     <td> {{ $barangay->barangay_chairman }} </td>
                                                     <td> {{ $barangay->contact_number }} </td>

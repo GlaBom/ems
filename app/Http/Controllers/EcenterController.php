@@ -31,13 +31,6 @@ class EcenterController extends Controller
     //Store
     public function store(Request $request)
     {
-        $request->validate([
-            'ec_name' => ['required', 'string', 'max:255'],
-            'manager' => ['required', 'string', 'max:255'],
-            'capacity' => ['required'],
-            'occupancy' => ['required'],
-            'barangay_name' => ['required'],
-        ]);
 
         $ecenter = new Ecenter();
         $ecenter->ec_name = $request->ec_name;

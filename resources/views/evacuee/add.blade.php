@@ -81,29 +81,17 @@
                                     </div>
                                 </div>
 
-                                {{-- birthdate --}}
+                                {{-- dob --}}
 
                                 <div class="col-md-3">
                                     <div class="mb-0 position-relative"> <br>
                                         <label class="form-label">Birthdate</label>
                                         <div class="col-sm-10">
-                                            <input name='birthdate' class="form-control" type="date"
-                                                value=" {{ old('birthdate') }}">
+                                            <input name='dob' class="form-control" type="date"
+                                                value=" {{ old('dob') }}">
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- age
-
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"> <br>
-                                        <label class="form-label">Age</label>
-                                        <div class="col-sm-10">
-                                            <input name='age' class="form-control" type="text"
-                                                value=" {{ old('age') }}">
-                                        </div>
-                                    </div>
-                                </div> --}}
 
                                 {{-- gender --}}
 
@@ -125,96 +113,6 @@
                                     </div>
                                 </div>
 
-                                {{-- address --}}
-
-                                {{-- <div class="col-md-3"> --}}
-                                    {{-- <div class="mb-0 position-relative"> <br>
-                                        <label class="form-label">Address</label>
-                                        <div class="col-sm-10">
-                                            <input name='address' class="form-control" type="text"
-                                                value=" {{ old('address') }}">
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                {{-- contact_number --}}
-
-                                {{-- <div class="col-md-3">
-                                    <div class="mb-0 position-relative"> <br>
-                                        <label class="form-label">Contact Number</label>
-                                        <div class="col-sm-10">
-                                            <input name='contact_number' class="form-control" type="text"
-                                                value=" {{ old('contact_number') }}">
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                {{-- tenure_status --}}
-{{--
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Tenure Status</label>
-                                        <div class="col-sm-10">
-                                            <select name="barangay_name" class="form-control" required>
-                                                <option value="" disabled selected>Select Tenure Status</option>
-
-                                                @php
-                                                $get = DB::table('tenure_status')->get();
-                                                foreach($get as $value)
-                                                {
-                                                echo "<option value=".$value->id.">$value->status_name</option>";
-                                                }
-                                                @endphp
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                {{-- housing_condition --}}
-
-                                {{-- <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Housing Condition</label>
-                                        <div class="col-sm-10">
-                                            <select name="barangay_name" class="form-control" required>
-                                                <option value="" disabled selected>Select Housing Condition</option>
-
-                                                @php
-                                                $get = DB::table('housing_conditions')->get();
-                                                foreach($get as $value)
-                                                {
-                                                echo "<option value=".$value->id.">$value->housing_condition_name</option>";
-                                                }
-                                                @endphp
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                                {{-- health_condition_name --}}
-
-                                {{-- <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Health Condition</label>
-                                        <div class="col-sm-10">
-                                            <select name="barangay_name" class="form-control">
-                                                <option value="" disabled selected>Select Health Condition</option>
-
-                                                @php
-                                                $get = DB::table('health_conditions')->get();
-                                                foreach($get as $value)
-                                                {
-                                                echo "<option value=".$value->id.">$value->health_condition_name</option>";
-                                                }
-                                                @endphp
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
                                 {{-- barangay --}}
 
                                 <div class="col-md-3">
@@ -229,28 +127,6 @@
                                                 foreach($get as $value)
                                                 {
                                                 echo "<option value=".$value->id.">$value->barangay_name</option>";
-                                                }
-                                                @endphp
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{-- evacuation center --}}
-
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Evacuation Center</label>
-                                        <div class="col-sm-10">
-                                            <select name="ec_name" class="form-control" required>
-                                                <option value="" disabled selected>Select Evacuation Center</option>
-
-                                                @php
-                                                $get = DB::table('ecenters')->get();
-                                                foreach($get as $value)
-                                                {
-                                                echo "<option value=".$value->id.">$value->ec_name</option>";
                                                 }
                                                 @endphp
 

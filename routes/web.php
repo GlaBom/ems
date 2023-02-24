@@ -29,7 +29,13 @@ Route::middleware('auth')->group(function () {
 //Admin All Route
 
 Route::controller(userController::class)->prefix('user')->group(function () {
+
     Route::get('/', 'index')->name('user.index');
+    Route::post('/store', 'store')->name('user.store');
+
+    Route::put('/update/{id}', 'update')->name('user.update');
+    Route::delete('/delete/{id}', 'delete')->name('user.delete');
+
     Route::get('/logout', 'destroy')->name('admin.logout');
     Route::get('/profile', 'viewProfile')->name('user.profile');
     Route::get('/edit/profile', 'editProfile')->name('edit.profile');
@@ -39,14 +45,15 @@ Route::controller(userController::class)->prefix('user')->group(function () {
     Route::post('/update/password', 'updatePassword')->name('update.password');
 });
 
+
 //Evacuee
 
-Route::controller(evacueeController::class)->prefix('evacuee')->group(function () {
+Route::controller(EvacueeController::class)->prefix('evacuee')->group(function () {
     Route::get('/', 'index')->name('evacuee.index');
     Route::get('/add', 'add')->name('evacuee.add');
     Route::get('/edit/{id}', 'edit')->name('evacuee.edit');
     Route::post('/store', 'store')->name('evacuee.store');
-    Route::post('/update', 'update')->name('evacuee.update');
+    Route::put('/update/{id}', 'update')->name('evacuee.update');
     Route::get('/destroy/{id}', 'destroy')->name('evacuee.destroy');
 });
 

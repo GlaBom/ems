@@ -18,5 +18,12 @@ class Ecenter extends Model
         return $this->hasOne(Evacuee::class,'ecenter_id','id');
     }
 
+    public function User()
+    {
+        return $this->hasOne(Evacuee::class,'barangay_id','id');
+    }
+
+
+
 }
 

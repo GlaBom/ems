@@ -31,33 +31,5 @@ class UsersSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        DB::table('users')->insert([
-           
-            'last_name' => 'Cosico',
-            'first_name' => 'David',
-            'middle_name' => 'Lubrin',
-            'usertype' => 'encoder',
-            'email' => 'david@ems.com',
-            'username' => 'David',
-            'password' => Hash::make('12345678'),
-            'email_verified_at' => NULL,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('users')->insert([
-           
-            'last_name' => 'Gutierrez',
-            'first_name' => 'Myrose',
-            'middle_name' => 'Lubrin',
-            'usertype' => 'encoder',
-            'email' => 'myrose@ems.com',
-            'username' => 'Myrose',
-            'password' => Hash::make('12345678'),
-            'email_verified_at' => NULL,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
     }
 }
