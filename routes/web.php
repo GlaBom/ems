@@ -7,8 +7,10 @@ use App\Http\Controllers\BarangayController;
 use App\Http\Controllers\EmergencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ECenterController;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 // Login
@@ -50,11 +52,14 @@ Route::controller(userController::class)->prefix('user')->group(function () {
 
 Route::controller(EvacueeController::class)->prefix('evacuee')->group(function () {
     Route::get('/', 'index')->name('evacuee.index');
+    Route::get('/view/{id}', 'view')->name('evacuee.view');
     Route::get('/add', 'add')->name('evacuee.add');
     Route::get('/edit/{id}', 'edit')->name('evacuee.edit');
     Route::post('/store', 'store')->name('evacuee.store');
     Route::put('/update/{id}', 'update')->name('evacuee.update');
+
     Route::get('/destroy/{id}', 'destroy')->name('evacuee.destroy');
+
 });
 
 //emergency
@@ -86,6 +91,12 @@ Route::controller(EcenterController::class)->prefix('ecenter')->group(function (
     Route::post('/store', 'store')->name('ecenter.store');
     Route::put('/update/{id}', 'update')->name('ecenter.update');
     Route::delete('/delete/{id}', 'delete')->name('ecenter.delete');
+});
+
+//Reports and Statistics
+Route::controller(ReportsController::class)->prefix('reports')->group(function () {
+    Route::get('/barangay', 'barangay');
+    Route::get('/gender', 'gender');
 });
 
 require __DIR__ . '/auth.php';

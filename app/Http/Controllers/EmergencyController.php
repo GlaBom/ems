@@ -34,6 +34,7 @@ class EmergencyController extends Controller
         $emergency->emergency_group = $request->emergency_group;
         $emergency->main_type = $request->main_type;
         $emergency->sub_type = $request->sub_type;
+        $emergency->name= $request->name;
         $emergency->date_occured = $request->date_occured;
         $emergency->save();
         return redirect()->route('emergency.index');
@@ -56,6 +57,7 @@ class EmergencyController extends Controller
         $emergency->emergency_group = $request->emergency_group;
         $emergency->main_type = $request->main_type;
         $emergency->sub_type = $request->sub_type;
+        $emergency->name= $request->name;
         $emergency->date_occured = $request->date_occured;
         $emergency->save();
         return redirect()->route('emergency.index')->with('success', 'Emergency updated successfully.');

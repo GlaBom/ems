@@ -69,20 +69,14 @@
                     </a>
                 </li>
 
-
-
-
-                {{-- Reports and Statistics --}}
-
-                {{-- <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
-                        <span>Reports and Statistics</span>
+                {{-- Reports --}}
+                <li>
+                    <a href=" {{ url('/reports/barangay') }} " class="waves-effect">
+                        <i class=" fas fa-users"></i>
+                        {{-- <span class="badge rounded-pill bg-success float-end">3</span> --}}
+                        <span>Reports</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-
-                    </ul>
-                </li> --}}
+                </li>
 
                 {{-- Activity Logs --}}
 
@@ -142,20 +136,13 @@
                     </a>
                 </li>
 
-                {{-- Reports and Statistics --}}
+                {{-- Reports --}}
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
-                        <span>Reports and Statistics</span>
+                    <a href=" {{ url('/reports/barangay') }} " class="waves-effect">
+                        <i class=" fas fa-users"></i>
+                        {{-- <span class="badge rounded-pill bg-success float-end">3</span> --}}
+                        <span>Reports</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Evacuees</a></li>
-                        <li><a href="#">Evacuees by Gender</a></li>
-                        <li><a href="#">Evacuees by Age</a></li>
-                        <li><a href="#">Evacuees by Barangay</a></li>
-                        <li><a href="#">Evacuees by Emergency</a></li>
-                        <li><a href="#">Evacuees by Center</a></li>
-                    </ul>
                 </li>
 
                 {{-- Activity Logs --}}

@@ -34,25 +34,11 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('dob');
+            $table->string('age');
             $table->string('gender');
-
-            // $table->unsignedBigInteger('tenure_status_id');
-            // $table->foreign('tenure_status_id')
-            //       ->references('id')
-            //       ->on('tenure_status')
-            //       ->onUpdate('cascade');
-
-            // $table->unsignedBigInteger('housing_condition_id');
-            // $table->foreign('housing_condition_id')
-            //         ->references('id')
-            //         ->on('housing_conditions')
-            //         ->onUpdate('cascade');
-
-            // $table->unsignedBigInteger('health_condition_id');
-            // $table->foreign('health_condition_id')
-            //         ->references('id')
-            //         ->on('health_conditions')
-            //         ->onUpdate('cascade');
+            $table->string('tenure_status');
+            $table->string('housing_condition');
+            $table->string('health_condition');
 
             $table->unsignedBigInteger('barangay_id');
             $table->foreign('barangay_id')
@@ -60,11 +46,11 @@ return new class extends Migration
                     ->on('barangays')
                     ->onUpdate('cascade');
 
-            // $table->unsignedBigInteger('ecenter_id');
-            // $table->foreign('ecenter_id')
-            //         ->references('id')
-            //         ->on('ecenters')
-            //         ->onUpdate('cascade');
+            $table->unsignedBigInteger('ecenter_id');
+            $table->foreign('ecenter_id')
+                    ->references('id')
+                    ->on('ecenters')
+                    ->onUpdate('cascade');
 
             $table->timestamps();
         });
@@ -76,9 +62,6 @@ return new class extends Migration
             $table->string('sub_type')->nullable();
             $table->string('name')->nullable();
             $table->string('date_occured');
-
-            $table->string('evacuees');
-
             $table->timestamps();
         });
     }

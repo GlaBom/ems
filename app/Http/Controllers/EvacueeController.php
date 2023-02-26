@@ -15,21 +15,35 @@ class EvacueeController extends Controller
     public function index()
     {
         $evacuees = Evacuee::join('barangays', 'barangays.id', '=', 'evacuees.barangay_id')
-        ->select('barangays.*', 'barangays.barangay_name as brgy', 'evacuees.*')
-        ->get();
+            ->join('ecenters', 'ecenters.id', '=', 'evacuees.ecenter_id')
+            ->select('barangays.*', 'barangays.barangay_name as brgy',  'ecenters.*', 'ecenters.ec_name as ec', 'evacuees.*')
+            ->get();
 
         $barangays = Barangay::all();
+        $ecenters = Ecenter::all();
 
-        return view('evacuee.index',
-        compact('evacuees','barangays'));
+        return view(
+            'evacuee.index',
+            compact('evacuees', 'barangays', 'ecenters')
+        );
+    }
+
+    public function view($id)
+    {
+        $evacuee = Evacuee::find($id);
+        $barangays = Barangay::all();
+        $ecenters = Ecenter::all();
+
+        return view('evacuee.view', compact('evacuee', 'barangays', 'ecenters'));
     }
 
     public function add()
     {
         $evacuees = Evacuee::get();
         $barangays = Barangay::get();
+        $ecenters = Ecenter::get();
 
-        return view('evacuee.add', compact('evacuees', 'barangays'));
+        return view('evacuee.add', compact('evacuees', 'barangays', 'ecenters'));
     }
 
     public function store(Request $request)
@@ -39,8 +53,13 @@ class EvacueeController extends Controller
         $evacuee->first_name = $request->first_name;
         $evacuee->middle_name = $request->middle_name;
         $evacuee->dob = $request->dob;
+        $evacuee->age = $request->age;
         $evacuee->gender = $request->gender;
+        $evacuee->tenure_status = $request->tenure_status;
+        $evacuee->housing_condition = $request->housing_condition;
+        $evacuee->health_condition = $request->health_condition;
         $evacuee->barangay_id = $request->barangay_name;
+        $evacuee->ecenter_id = $request->ec_name;
 
         $evacuee->save();
 
@@ -50,9 +69,10 @@ class EvacueeController extends Controller
     public function edit($id)
     {
         $evacuee = Evacuee::find($id);
-
         $barangays = Barangay::all();
-        return view('evacuee.edit', compact('evacuee', 'barangays'));
+        $ecenters = Ecenter::all();
+
+        return view('evacuee.edit', compact('evacuee', 'barangays', 'ecenters'));
     }
 
     public function update(Request $request, $id)
@@ -63,8 +83,13 @@ class EvacueeController extends Controller
             'first_name' => $request->first_name,
             'middle_name' => $request->middle_name,
             'dob' => $request->dob,
+            'age' => $request->age,
             'gender' => $request->gender,
+            'tenure_status' => $request->tenure_status,
+            'housing_condition' => $request->housing_condition,
+            'health_condition' => $request->health_condition,
             'barangay_id' => $request->barangay_name,
+            'ecenter_id' => $request->ec_name,
 
         ]);
 

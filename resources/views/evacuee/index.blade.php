@@ -38,8 +38,10 @@
                                             <tr style="cursor: pointer;">
                                                 <th>Full Name</th>
                                                 <th>Date of Birth</th>
+                                                <th>Age</th>
                                                 <th>Gender</th>
                                                 <th>Barangay</th>
+                                                <th>Evacuation Center</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -48,16 +50,26 @@
                                             @foreach ($evacuees as $evacuee)
                                                 <tr data-id="1" style="cursor: pointer;">
                                                     <td> {{ $evacuee->last_name }}, {{ $evacuee->first_name }}, {{ $evacuee->middle_name }}</td>
-                                                    <td> {{ $evacuee->gender }} </td>
                                                     <td> {{ $evacuee->dob }} </td>
+                                                    <td> {{ $evacuee->age }} </td>
+                                                    <td> {{ $evacuee->gender }} </td>
                                                     <td> {{ $evacuee->barangay_name }} </td>
+                                                    <td> {{ $evacuee->ec_name}} </td>
 
                                                     <td>
+                                                        {{-- <span>
+                                                            <a href=" {{ url('/evacuee/view/' . $evacuee->id) }} ">
+                                                                <i class="cursor-pointer fas fa-eye  text-secondary"
+                                                                    aria-hidden="true"></i></a>
+                                                        </span> --}}
+
+                                                        <span>
                                                         <a href=" {{ url('/evacuee/edit/' . $evacuee->id) }} "
                                                             data-bs-original-title="Edit user">
                                                             <i class="fas fa-user-edit text-secondary"
                                                                 aria-hidden="true"></i>
                                                         </a>
+                                                        </span>
 
                                                         <span>
                                                             <a href=" {{ url('/evacuee/destroy/' . $evacuee->id) }} ">

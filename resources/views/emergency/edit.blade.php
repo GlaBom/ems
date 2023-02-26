@@ -33,89 +33,96 @@
                             <div class="row">
                                 @csrf
 
-                                {{-- emergency_group --}}
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Emergency Group</label>
-                                        <select id="emergency_group"
-                                            class="form-select @error('emergency_group') is-invalid @enderror"
-                                            name="emergency_group" required>
-                                            <option value="" disabled selected>Choose Emergency Group</option>
-                                            <option value="natural">Natural</option>
-                                            <option value="technological">Technological</option>
-                                            <option value="human-caused">Human-Caused</option>
-                                        </select>
-                                        @error('emergency_group')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                <div class="row">
+                                    {{-- emergency_group --}}
+                                    <div class="col-md-3">
+                                        <div class="mb-0 position-relative">
+                                            <br>
+                                            <label class="form-label">Emergency Group</label>
+                                            <select id="emergency_group"
+                                                class="form-select @error('emergency_group') is-invalid @enderror"
+                                                name="emergency_group" required>
+                                                <option value="" disabled>Choose Emergency Group</option>
+                                                <option value="natural" {{ $emergency->emergency_group == 'natural' ?
+                                                    'selected' : '' }}>Natural</option>
+                                                <option value="technological" {{ $emergency->emergency_group ==
+                                                    'technological' ? 'selected' : '' }}>Technological</option>
+                                                <option value="human-caused" {{ $emergency->emergency_group ==
+                                                    'human-caused' ? 'selected' : '' }}>Human-Caused</option>
+                                            </select>
+                                            @error('emergency_group')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                {{-- main_type --}}
-
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Emergency Main Type</label>
-                                        <input name='main_type' class="form-control" type="text"
-                                            value="{{ old('main_type') }}">
-                                        @error('main_type')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                    {{-- main_type --}}
+                                    <div class="col-md-3">
+                                        <div class="mb-0 position-relative">
+                                            <br>
+                                            <label class="form-label">Emergency Main Type</label>
+                                            <input name='main_type'
+                                                class="form-control @error('main_type') is-invalid @enderror"
+                                                type="text" value="{{ old('main_type', $emergency->main_type) }}">
+                                            @error('main_type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-
-                                {{-- sub_type --}}
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Emergency Sub Type</label>
-                                        <input name='sub_type' class="form-control" type="text"
-                                            value="{{ old('sub_type') }}">
-                                        @error('sub_type')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                    {{-- sub_type --}}
+                                    <div class="col-md-3">
+                                        <div class="mb-0 position-relative">
+                                            <br>
+                                            <label class="form-label">Emergency Sub Type</label>
+                                            <input name='sub_type'
+                                                class="form-control @error('sub_type') is-invalid @enderror" type="text"
+                                                value="{{ old('sub_type', $emergency->sub_type) }}">
+                                            @error('sub_type')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                {{-- name --}}
-
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"><br>
-                                        <label class="form-label">Emergency Name</label>
-                                        <input name='name' class="form-control" type="text"
-                                            value="{{ old('name') }}">
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                    {{-- name --}}
+                                    <div class="col-md-3">
+                                        <div class="mb-0 position-relative">
+                                            <br>
+                                            <label class="form-label">Emergency Name</label>
+                                            <input name='name' class="form-control @error('name') is-invalid @enderror"
+                                                type="text" value="{{ old('name', $emergency->name) }}">
+                                            @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                {{-- date_occured --}}
+                                    {{-- date_occured --}}
 
-                                <div class="col-md-3">
-                                    <div class="mb-0 position-relative"> <br>
-                                        <label class="form-label">Date Occured</label>
-                                        <div class="col-sm-10">
-                                            <input name='date_occured' class="form-control" type="date"
-                                                value="{{ $emergency->date_occured }}">
+                                    <div class="col-md-3">
+                                        <div class="mb-0 position-relative"> <br>
+                                            <label class="form-label">Date Occured</label>
+                                            <div class="col-sm-10">
+                                                <input name='date_occured' class="form-control" type="date"
+                                                    value="{{ $emergency->date_occured }}">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            {{-- edit emergency button --}}
+                                {{-- edit emergency button --}}
 
-                            <div> <br>
-                                <button type="submit"
-                                    class="btn btn-info btn-rounded bg-dark waves-effect waves-light">Update</button>
-                            </div>
+                                <div> <br>
+                                    <button type="submit"
+                                        class="btn btn-info btn-rounded bg-dark waves-effect waves-light">Update</button>
+                                </div>
                         </form>
 
                     </div>
