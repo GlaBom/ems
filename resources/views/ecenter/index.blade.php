@@ -25,7 +25,7 @@
 
                                 <div class="d-flex flex-row justify-content-between">
                                     <div>
-                                        <a href="{{ route('ecenter.add') }}"
+                                        <a href="{{ route('ecenter.create') }}"
                                             class="btn btn-info btn-sm mb-0 bg-dark waves-effect waves-light"
                                             type="button">+&nbsp; Add</a>
                                     </div>
@@ -37,7 +37,6 @@
                                 <table class="table table-editable table-nowrap align-middle table-edits">
                                     <thead>
                                         <tr style="cursor: pointer;">
-                                            <th>ID</th>
                                             <th>Barangay</th>
                                             <th>Center Name</th>
                                             <th>Camp Manager</th>
@@ -48,13 +47,8 @@
                                     </thead>
 
                                     <tbody>
-                                        @php
-                                        $i = 1;
-                                        @endphp
-
                                         @foreach ($data as $ecenter)
                                         <tr data-id="1" style="cursor: pointer;">
-                                            <td> {{ $i++ }} </td>
                                             <td> {{ $ecenter->barangay_name }} </td>
                                             <td> {{ $ecenter->ec_name }} </td>
                                             <td> {{ $ecenter->manager }} </td>
@@ -63,24 +57,57 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-1">
-                                                        <a href=" {{ url('ecenter/edit/' . $ecenter->id) }} "
+                                                        <a href=" {{ route('ecenter.edit', $ecenter->id) }} "
                                                             data-bs-original-title="Edit user">
                                                             <i class="fas fa-user-edit text-secondary"
                                                                 aria-hidden="true"></i>
                                                         </a>
                                                     </div>
 
+                                                    {{-- Delete Evacuation Center --}}
                                                     <div class="col">
-                                                        <form action="{{ route('ecenter.delete', [$ecenter->id]) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                class="cursor-pointer fas fa-trash text-secondary"
-                                                                onclick="return confirm('Are you sure you want to delete this?')"
-                                                                style="background-color: transparent;"></button>
-                                                        </form>
+                                                        <a data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                                            <i class="fas fa-trash"></i></a>
+
+                                                        {{-- Delete Modal --}}
+
+                                                        <div class="modal fade" id="deleteModal" tabindex="-1"
+                                                            role="dialog" aria-labelledby="deleteModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="deleteModalLabel">
+                                                                            Delete
+                                                                            ecenter</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Are you sure you want to delete this evacuation center?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-light waves-effect"
+                                                                            data-bs-dismiss="modal">Close</button>
+
+                                                                        <form
+                                                                            action="{{ route('ecenter.destroy', [$ecenter->id]) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit"
+                                                                                class="btn btn-danger">Delete</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
+
                                                 </div>
                                             </td>
                                         </tr>

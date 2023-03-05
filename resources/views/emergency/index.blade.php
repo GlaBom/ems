@@ -25,7 +25,7 @@
 
                                 <div class="flex-row d-flex justify-content-between">
                                     <div>
-                                        <a href="{{ route('emergency.add') }}"
+                                        <a href="{{ route('emergency.create') }}"
                                             class="mb-0 btn btn-info btn-sm bg-dark waves-effect waves-light"
                                             type="button">+&nbsp; Add</a>
                                     </div>
@@ -55,16 +55,60 @@
                                             <td> {{ $emergency->name }} </td>
 
                                             <td>
-                                                <a href=" {{ url('emergency/edit/' . $emergency->id) }} "
-                                                    data-bs-original-title="Edit user">
-                                                    <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
-                                                </a>
+                                                {{-- Edit Emergency --}}
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        <a href=" {{ route('emergency.edit', $emergency->id) }} "
+                                                            data-bs-original-title="Edit user">
+                                                            <i class="fas fa-user-edit text-secondary"
+                                                                aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
 
-                                                <span>
-                                                    <a href=" {{ url('/emergency/delete/' . $emergency->id) }} ">
-                                                        <i class="cursor-pointer fas fa-trash text-secondary"
-                                                            aria-hidden="true"></i></a>
-                                                </span>
+                                                {{-- Delete Emergency --}}
+                                                    <div class="col">
+                                                        <a data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                                            <i class="fas fa-trash"></i></a>
+
+                                                        {{-- Delete Modal --}}
+
+                                                        <div class="modal fade" id="deleteModal" tabindex="-1"
+                                                            role="dialog" aria-labelledby="deleteModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="deleteModalLabel">
+                                                                            Delete
+                                                                            emergency</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Are you sure you want to delete this emergency?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-light waves-effect"
+                                                                            data-bs-dismiss="modal">Close</button>
+
+                                                                        <form
+                                                                            action="{{ route('emergency.destroy', [$emergency->id]) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit"
+                                                                                class="btn btn-danger">Delete</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach

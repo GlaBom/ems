@@ -22,9 +22,9 @@
                     <div class="card" data-select2-id="145">
                         <div class="card-body" data-select2-id="144">
 
-                            <form action="{{ url('/barangay/update') }}" method="POST" data-select2-id="13">
+                            <form action="{{ route('barangay.update', ['barangay' => $data->id]) }}" method="POST" data-select2-id="13">
                                 @csrf
-
+                                @method('PUT')
                                 @if (Session::has('success'))
                                     <div class="alert alert-success" role="alert">
                                         {{ Session::get('success') }}

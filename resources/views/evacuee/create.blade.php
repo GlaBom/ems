@@ -24,7 +24,7 @@
 
                         {{-- Add --}}
 
-                        <form action="{{ url('/evacuee/store') }}" method="POST">
+                        <form action="{{ route('evacuee.store') }}" method="POST">
                             @csrf
 
                             @if (Session::has('success'))
@@ -230,15 +230,10 @@
                                         <div class="col-sm-10">
                                             <select name="barangay_name" class="form-control" required>
                                                 <option value="" disabled selected>Select Barangay</option>
-
-                                                @php
-                                                $get = DB::table('barangays')->get();
-                                                foreach($get as $value)
-                                                {
-                                                echo "<option value=".$value->id.">$value->barangay_name</option>";
-                                                }
-                                                @endphp
-
+                                                @foreach($barangays as $barangay)
+                                                <option value="{{ $barangay->id }}">{{ $barangay->barangay_name }}
+                                                </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

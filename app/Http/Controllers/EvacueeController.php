@@ -28,22 +28,13 @@ class EvacueeController extends Controller
         );
     }
 
-    public function view($id)
-    {
-        $evacuee = Evacuee::find($id);
-        $barangays = Barangay::all();
-        $ecenters = Ecenter::all();
-
-        return view('evacuee.view', compact('evacuee', 'barangays', 'ecenters'));
-    }
-
-    public function add()
+    public function create()
     {
         $evacuees = Evacuee::get();
         $barangays = Barangay::get();
         $ecenters = Ecenter::get();
 
-        return view('evacuee.add', compact('evacuees', 'barangays', 'ecenters'));
+        return view('evacuee.create', compact('evacuees', 'barangays', 'ecenters'));
     }
 
     public function store(Request $request)
@@ -64,6 +55,15 @@ class EvacueeController extends Controller
         $evacuee->save();
 
         return redirect()->route('evacuee.index');
+    }
+
+    public function show($id)
+    {
+        $evacuee = Evacuee::find($id);
+        $barangays = Barangay::all();
+        $ecenters = Ecenter::all();
+
+        return view('evacuee.view', compact('evacuee', 'barangays', 'ecenters'));
     }
 
     public function edit($id)

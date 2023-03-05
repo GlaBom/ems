@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware('auth','verified')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
@@ -27,8 +27,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-//Admin All Route
 
 Route::controller(userController::class)->prefix('user')->group(function () {
 
@@ -49,48 +47,23 @@ Route::controller(userController::class)->prefix('user')->group(function () {
 
 
 //Evacuee
-
-Route::controller(EvacueeController::class)->prefix('evacuee')->group(function () {
-    Route::get('/', 'index')->name('evacuee.index');
-    Route::get('/view/{id}', 'view')->name('evacuee.view');
-    Route::get('/add', 'add')->name('evacuee.add');
-    Route::get('/edit/{id}', 'edit')->name('evacuee.edit');
-    Route::post('/store', 'store')->name('evacuee.store');
-    Route::put('/update/{id}', 'update')->name('evacuee.update');
-
-    Route::get('/destroy/{id}', 'destroy')->name('evacuee.destroy');
-
+Route::prefix('evacuee')->group(function () {
+    Route::resource('evacuee', EvacueeController::class);
 });
 
-//emergency
-Route::controller(EmergencyController::class)->prefix('emergency')->group(function () {
-    Route::get('/', 'index')->name('emergency.index');
-    Route::get('/add', 'add')->name('emergency.add');
-    Route::get('/edit/{id}', 'edit')->name('emergency.edit');
-    Route::post('/store', 'store')->name('emergency.store');
-    Route::put('/update/{id}', 'update')->name('emergency.update');
-    Route::get('/delete/{id}', 'delete')->name('emergency.delete');
+//Emergency
+Route::prefix('emergency')->group(function () {
+    Route::resource('emergency', EmergencyController::class);
 });
 
 //Barangay
-
-Route::controller(BarangayController::class)->prefix('barangay')->group(function () {
-    Route::get('/', 'index')->name('barangay.index');
-    Route::get('/add', 'add')->name('barangay.add');
-    Route::post('/store', 'store')->name('barangay.store');
-    Route::get('/edit/{id}', 'edit')->name('barangay.edit');
-    Route::post('/update', 'update')->name('barangay.update');
-    Route::get('/delete/{id}', 'delete')->name('barangay.delete');
+Route::prefix('barangay')->group(function () {
+    Route::resource('barangay', BarangayController::class);
 });
 
 //Evacuation Center
-Route::controller(EcenterController::class)->prefix('ecenter')->group(function () {
-    Route::get('/', 'index')->name('ecenter.index');
-    Route::get('/add', 'add')->name('ecenter.add');
-    Route::get('/edit/{id}', 'edit')->name('ecenter.edit');
-    Route::post('/store', 'store')->name('ecenter.store');
-    Route::put('/update/{id}', 'update')->name('ecenter.update');
-    Route::delete('/delete/{id}', 'delete')->name('ecenter.delete');
+Route::prefix('ecenter')->group(function () {
+    Route::resource('ecenter', EcenterController::class);
 });
 
 //Reports and Statistics

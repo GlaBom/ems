@@ -21,11 +21,11 @@ class EcenterController extends Controller
     }
 
     //Create
-    public function add()
+    public function create()
     {
         $data = Ecenter::get();
-        $brgy = Barangay::get();
-        return view('ecenter.add', compact('data', 'brgy'));
+        $barangays = Barangay::get();
+        return view('ecenter.create', compact('data', 'barangays'));
     }
 
     //Store
@@ -68,7 +68,7 @@ class EcenterController extends Controller
 }
 
     //Delete
-    public function delete($id)
+    public function destroy($id)
     {
         Ecenter::where('id', '=', $id)->delete();
         return redirect()->back()->with('success', 'Evacuation Center deleted successfully');

@@ -23,7 +23,7 @@
                         <div class="card-body" data-select2-id="144">
 
                             {{-- Add --}}
-                            <form action="{{ url('/emergency/store') }}" method="POST">
+                            <form action="{{ route('emergency.store')}}" method="POST">
                                 @csrf
                                 @if (Session::has('success'))
                                     <div class="alert alert-success" role="alert">
@@ -41,9 +41,9 @@
                                                 class="form-select @error('emergency_group') is-invalid @enderror"
                                                 name="emergency_group" required>
                                                 <option value="" disabled selected>Choose Emergency Group</option>
-                                                <option value="natural">Natural</option>
-                                                <option value="technological">Technological</option>
-                                                <option value="human-caused">Human-Caused</option>
+                                                <option value="Natural">Natural</option>
+                                                <option value="Technological">Technological</option>
+                                                <option value="Human-Caused">Human-Caused</option>
                                             </select>
                                             @error('emergency_group')
                                                 <span class="invalid-feedback" role="alert">

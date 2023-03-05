@@ -15,7 +15,7 @@ class EmergencyController extends Controller
     }
 
     // Create
-    public function add()
+    public function create()
     {
         $emergency_groups = ['Natural', 'Technological', 'Human-Caused'];
         $main_types = [
@@ -24,7 +24,7 @@ class EmergencyController extends Controller
             'Human-Caused' => ['Terrorism', 'Armed Conflict', 'Cyber Attack']
         ];
         $emergencies = Emergency::get();
-        return view('emergency.add', compact('emergencies', 'emergency_groups', 'main_types'));
+        return view('emergency.create', compact('emergencies', 'emergency_groups', 'main_types'));
     }
 
     // Store
@@ -37,7 +37,14 @@ class EmergencyController extends Controller
         $emergency->name= $request->name;
         $emergency->date_occured = $request->date_occured;
         $emergency->save();
+
         return redirect()->route('emergency.index');
+    }
+
+    //Show
+    public function show()
+    {
+
     }
 
     // Edit
@@ -63,8 +70,8 @@ class EmergencyController extends Controller
         return redirect()->route('emergency.index')->with('success', 'Emergency updated successfully.');
     }
 
-    // Delete
-    public function delete($id)
+    // Destroy
+    public function destroy($id)
     {
         Emergency::where('id', '=', $id)->delete();
         return redirect()->back()->with('success', 'Emergency deleted successfully');
